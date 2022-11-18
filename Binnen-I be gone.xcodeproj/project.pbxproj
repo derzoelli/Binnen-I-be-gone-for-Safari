@@ -13,8 +13,8 @@
 		DCB37AC4273AB99E0015A605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AC2273AB99E0015A605 /* Main.storyboard */; };
 		DCB37ACD273AB99E0015A605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37ACC273AB99E0015A605 /* AppDelegate.swift */; };
 		DCB37AD0273AB99E0015A605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB37ACE273AB99E0015A605 /* Main.storyboard */; };
-		DCB37AD8273AB99E0015A605 /* Binnen-I be gone Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCB37AD7273AB99E0015A605 /* Binnen-I be gone Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DCB37AE2273AB99F0015A605 /* Binnen-I be gone Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCB37AD8273AB99E0015A605 /* Binnen-I be gone Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCB37AD7273AB99E0015A605 /* Binnen-I be gone Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DCB37AE2273AB99F0015A605 /* Binnen-I be gone Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCB37AE8273AB99F0015A605 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAB273AB99B0015A605 /* Main.html */; };
 		DCB37AE9273AB99F0015A605 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAB273AB99B0015A605 /* Main.html */; };
 		DCB37AEA273AB99F0015A605 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAD273AB99B0015A605 /* Icon.png */; };
@@ -65,26 +65,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DCB37AFB273AB99F0015A605 /* Embed App Extensions */ = {
+		DCB37AFB273AB99F0015A605 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DCB37AD8273AB99E0015A605 /* Binnen-I be gone Extension.appex in Embed App Extensions */,
+				DCB37AD8273AB99E0015A605 /* Binnen-I be gone Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCB37B02273AB99F0015A605 /* Embed App Extensions */ = {
+		DCB37B02273AB99F0015A605 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DCB37AE2273AB99F0015A605 /* Binnen-I be gone Extension.appex in Embed App Extensions */,
+				DCB37AE2273AB99F0015A605 /* Binnen-I be gone Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -280,7 +280,7 @@
 				DCB37AB4273AB99E0015A605 /* Sources */,
 				DCB37AB5273AB99E0015A605 /* Frameworks */,
 				DCB37AB6273AB99E0015A605 /* Resources */,
-				DCB37AFB273AB99F0015A605 /* Embed App Extensions */,
+				DCB37AFB273AB99F0015A605 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -299,7 +299,7 @@
 				DCB37AC6273AB99E0015A605 /* Sources */,
 				DCB37AC7273AB99E0015A605 /* Frameworks */,
 				DCB37AC8273AB99E0015A605 /* Resources */,
-				DCB37B02273AB99F0015A605 /* Embed App Extensions */,
+				DCB37B02273AB99F0015A605 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -353,7 +353,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					DCB37AB7273AB99E0015A605 = {
 						CreatedOnToolsVersion = 13.1;
@@ -578,6 +578,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -638,6 +639,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -800,8 +802,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/Binnen-I be gone.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1118;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -813,7 +817,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2022.3;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -832,8 +836,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/Binnen-I be gone.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1118;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -845,7 +851,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2022.3;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -867,8 +873,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS (App)/Binnen-I be gone.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1118;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -881,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2022.3;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -904,8 +912,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "macOS (App)/Binnen-I be gone.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1118;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -918,7 +928,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MARKETING_VERSION = 2022.3;
 				OTHER_LDFLAGS = (
 					"-framework",
