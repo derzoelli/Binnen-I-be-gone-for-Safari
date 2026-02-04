@@ -125,7 +125,7 @@
 		DCB37B0B273AB9A00015A605 /* META-INF */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "META-INF"; path = "../../3.1.1/META-INF"; sourceTree = "<group>"; };
 		DCB37B0C273AB9A00015A605 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../3.1.1/manifest.json; sourceTree = "<group>"; };
 		DCB37B0D273AB9A00015A605 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = ../../3.1.1/options.html; sourceTree = "<group>"; };
-		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = ../../3.1.1/binnenibegone.js; sourceTree = "<group>"; };
+		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = Resources/binnenibegone.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
