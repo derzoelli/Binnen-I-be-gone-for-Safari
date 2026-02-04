@@ -118,13 +118,13 @@
 		DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Binnen-I be gone Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB37AE6273AB99F0015A605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCB37AE7273AB99F0015A605 /* Binnen-I be gone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Binnen-I be gone.entitlements"; sourceTree = "<group>"; };
-		DCB37B07273AB9A00015A605 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../3.1.1/background.js; sourceTree = "<group>"; };
-		DCB37B08273AB9A00015A605 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = ../../3.1.1/css; sourceTree = "<group>"; };
-		DCB37B09273AB9A00015A605 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../3.1.1/images; sourceTree = "<group>"; };
-		DCB37B0A273AB9A00015A605 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = options.js; path = ../../3.1.1/options.js; sourceTree = "<group>"; };
+		DCB37B07273AB9A00015A605 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = Resources/background.js; sourceTree = "<group>"; };
+		DCB37B08273AB9A00015A605 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = Resources/css; sourceTree = "<group>"; };
+		DCB37B09273AB9A00015A605 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = Resources/images; sourceTree = "<group>"; };
+		DCB37B0A273AB9A00015A605 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = options.js; path = Resources/options.js; sourceTree = "<group>"; };
 		DCB37B0B273AB9A00015A605 /* META-INF */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "META-INF"; path = "../../3.1.1/META-INF"; sourceTree = "<group>"; };
-		DCB37B0C273AB9A00015A605 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../3.1.1/manifest.json; sourceTree = "<group>"; };
-		DCB37B0D273AB9A00015A605 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = ../../3.1.1/options.html; sourceTree = "<group>"; };
+		DCB37B0C273AB9A00015A605 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		DCB37B0D273AB9A00015A605 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = Resources/options.html; sourceTree = "<group>"; };
 		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = Resources/binnenibegone.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
