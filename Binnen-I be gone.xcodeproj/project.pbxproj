@@ -126,6 +126,8 @@
 		DCB37B0C273AB9A00015A605 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
 		DCB37B0D273AB9A00015A605 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = Resources/options.html; sourceTree = "<group>"; };
 		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = Resources/binnenibegone.js; sourceTree = "<group>"; };
+		DCED404D2F3539F00019FE9D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCED404E2F353BB80019FE9D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,8 @@
 				DCB37ADB273AB99E0015A605 /* iOS (Extension) */,
 				DCB37AE5273AB99F0015A605 /* macOS (Extension) */,
 				DCB37AB9273AB99E0015A605 /* Products */,
+				DCED404D2F3539F00019FE9D /* README.md */,
+				DCED404E2F353BB80019FE9D /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
