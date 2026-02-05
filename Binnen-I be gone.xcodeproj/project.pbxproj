@@ -118,14 +118,17 @@
 		DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Binnen-I be gone Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB37AE6273AB99F0015A605 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCB37AE7273AB99F0015A605 /* Binnen-I be gone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Binnen-I be gone.entitlements"; sourceTree = "<group>"; };
-		DCB37B07273AB9A00015A605 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../3.1.1/background.js; sourceTree = "<group>"; };
-		DCB37B08273AB9A00015A605 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = ../../3.1.1/css; sourceTree = "<group>"; };
-		DCB37B09273AB9A00015A605 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = ../../3.1.1/images; sourceTree = "<group>"; };
-		DCB37B0A273AB9A00015A605 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = options.js; path = ../../3.1.1/options.js; sourceTree = "<group>"; };
+		DCB37B07273AB9A00015A605 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = Resources/background.js; sourceTree = "<group>"; };
+		DCB37B08273AB9A00015A605 /* css */ = {isa = PBXFileReference; lastKnownFileType = folder; name = css; path = Resources/css; sourceTree = "<group>"; };
+		DCB37B09273AB9A00015A605 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = images; path = Resources/images; sourceTree = "<group>"; };
+		DCB37B0A273AB9A00015A605 /* options.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = options.js; path = Resources/options.js; sourceTree = "<group>"; };
 		DCB37B0B273AB9A00015A605 /* META-INF */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "META-INF"; path = "../../3.1.1/META-INF"; sourceTree = "<group>"; };
-		DCB37B0C273AB9A00015A605 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../3.1.1/manifest.json; sourceTree = "<group>"; };
-		DCB37B0D273AB9A00015A605 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = ../../3.1.1/options.html; sourceTree = "<group>"; };
-		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = ../../3.1.1/binnenibegone.js; sourceTree = "<group>"; };
+		DCB37B0C273AB9A00015A605 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		DCB37B0D273AB9A00015A605 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = options.html; path = Resources/options.html; sourceTree = "<group>"; };
+		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = Resources/binnenibegone.js; sourceTree = "<group>"; };
+		DCED404D2F3539F00019FE9D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCED404E2F353BB80019FE9D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DCED404F2F353FE60019FE9D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,9 @@
 				DCB37ADB273AB99E0015A605 /* iOS (Extension) */,
 				DCB37AE5273AB99F0015A605 /* macOS (Extension) */,
 				DCB37AB9273AB99E0015A605 /* Products */,
+				DCED404D2F3539F00019FE9D /* README.md */,
+				DCED404E2F353BB80019FE9D /* .gitignore */,
+				DCED404F2F353FE60019FE9D /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
@@ -670,7 +676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
@@ -682,7 +688,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -701,7 +707,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
@@ -713,7 +719,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -737,7 +743,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (App)/Info.plist";
@@ -753,7 +759,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -778,7 +784,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS (App)/Info.plist";
@@ -794,7 +800,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -819,7 +825,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -833,7 +839,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -855,7 +861,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -869,7 +875,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -894,7 +900,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -909,7 +915,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
@@ -934,7 +940,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 231215;
+				CURRENT_PROJECT_VERSION = 040226;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = N893T3VXPL;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -949,7 +955,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 2023.2;
+				MARKETING_VERSION = 2026.1;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SafariServices,
