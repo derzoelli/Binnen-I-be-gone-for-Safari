@@ -1,5 +1,17 @@
 # Binnen-I-be-gone-for-Safari
-New repo for Binnen I be gone. It's now a universal binary and available on all Apple platforms.
+
+![Platforms](https://img.shields.io/badge/platform-iOS%20%7C%20macOS-lightgrey)
+![Apple Silicon + Intel](https://img.shields.io/badge/Apple%20Silicon%20%2B%20Intel-Universal-blueviolet)
+![Universal Binary](https://img.shields.io/badge/macOS-universal%20binary-blue)
+![Safari Web Extension](https://img.shields.io/badge/Safari-Web%20Extension-blue)
+![Swift](https://img.shields.io/badge/Swift-5.9-orange)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+![License GPL-3.0](https://img.shields.io/badge/license-GPL--3.0-green)
+![Apple Native](https://img.shields.io/badge/Apple-Native-lightgrey?logo=apple)
+![Xcode Required](https://img.shields.io/badge/Requires-Xcode%2015%2B-blue?logo=xcode)
+
+
+New repository for Binnen‑I‑be‑gone, now provided as a universal binary with support across all Apple platforms.
 
 -----------------------------------------------------------------------------------------------------------------------
 
