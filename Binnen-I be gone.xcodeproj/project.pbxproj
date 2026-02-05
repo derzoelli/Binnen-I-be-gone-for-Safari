@@ -128,6 +128,7 @@
 		DCB37B0E273AB9A00015A605 /* binnenibegone.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = binnenibegone.js; path = Resources/binnenibegone.js; sourceTree = "<group>"; };
 		DCED404D2F3539F00019FE9D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCED404E2F353BB80019FE9D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		DCED404F2F353FE60019FE9D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +175,7 @@
 				DCB37AB9273AB99E0015A605 /* Products */,
 				DCED404D2F3539F00019FE9D /* README.md */,
 				DCED404E2F353BB80019FE9D /* .gitignore */,
+				DCED404F2F353FE60019FE9D /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
