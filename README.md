@@ -24,6 +24,7 @@ Diese Safari Erweiterung basiert auf der Arbeit der Entwickler der Chrome & Fire
 -----------------------------------------------------------------------------------------------------------------------
 
 Die App ist im App Store verfügbar:
+
 [![Laden im App Store](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/de-de?size=250x83)](https://apps.apple.com/de/app/binnen-i-be-gone/id1591455415)
 
 Als universal binary ist sie nun auf allen Plattformen verfügbar, für ARM Macs optimiert und natürlich auch auf Intel Macs weiterhin lauffähig.
@@ -33,6 +34,7 @@ Selbstverständlich bekommt ihr die App auch im AppStore weiterhin kostenlos.
 Falls ihr mich dabei unterstützen wollt meinen 99€/Jahr Apple Developer Account zu finanzieren, könnt ihr mir gerne eine kleine Spende über PayPal zukommen lassen: https://www.paypal.me/robinzoellner
 
 Wenn ihr am Betaprogramm in TestFlight teilnehmen wollt, könnt ihr hier beitreten: 
+
 [![TestFlight Beta](https://img.shields.io/badge/TestFlight-Beta-blue?logo=apple)](https://testflight.apple.com/join/CVIYsv2P)
 
 
