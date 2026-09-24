@@ -2,7 +2,9 @@
 (function () {
     "use strict";
     var saveTimer;
+    var previousMode;
     function field(id) { return document.getElementById(id); }
+    function selectedMode() { return document.querySelector('input[name="filterstate"]:checked').value; }
 
     function updateModeUI() {
         var onDemand = field("ondemandstate").checked;
@@ -21,6 +23,7 @@
         field("blocklist").value = settings.blocklist || "";
         var modes = { Keine: "none", Blocklist: "blockliststate", Allowlist: "allowliststate", "Bei Bedarf": "ondemandstate" };
         field(modes[settings.filterliste] || "blockliststate").checked = true;
+        previousMode = selectedMode();
         updateModeUI();
     }
 
@@ -29,7 +32,7 @@
         ["aktiv", "counter", "invertiert", "doppelformen", "partizip", "skip_topic"].forEach(function (key) {
             settings[key] = field(key).checked;
         });
-        settings.filterliste = document.querySelector('input[name="filterstate"]:checked').value;
+        settings.filterliste = selectedMode();
         settings.allowlist = field("allowlist").value.trim();
         settings.blocklist = field("blocklist").value.trim();
         return settings;
@@ -37,8 +40,19 @@
 
     function save() {
         clearTimeout(saveTimer);
+        if (selectedMode() === "Bei Bedarf") field("aktiv").checked = false;
         updateModeUI();
         chrome.runtime.sendMessage({ type: "setSettings", settings: values() });
+    }
+
+    function changed(event) {
+        if (event.target.name === "filterstate") {
+            var mode = selectedMode();
+            if (mode === "Bei Bedarf") field("aktiv").checked = false;
+            else if (previousMode === "Bei Bedarf") field("aktiv").checked = true;
+            previousMode = mode;
+        }
+        save();
     }
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -52,7 +66,7 @@
             }
         });
         document.querySelectorAll('input').forEach(function (input) {
-            input.addEventListener("change", save);
+            input.addEventListener("change", changed);
         });
         document.querySelectorAll('textarea').forEach(function (input) {
             input.addEventListener("input", function () {

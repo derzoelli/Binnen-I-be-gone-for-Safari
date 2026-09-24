@@ -19,6 +19,23 @@ final class SettingsModel: ObservableObject {
         isReady = store?.isInitialized ?? false
     }
     func save() { store?.save(settings) }
+
+    var canEditActive: Bool { isReady && settings.filterMode != "Bei Bedarf" }
+
+    func setActive(_ active: Bool) {
+        guard canEditActive else { return }
+        settings.isActive = active
+        save()
+    }
+
+    func setFilterMode(_ mode: String) {
+        guard isReady, settings.filterMode != mode else { return }
+        let wasOnDemand = settings.filterMode == "Bei Bedarf"
+        settings.filterMode = mode
+        if mode == "Bei Bedarf" { settings.isActive = false }
+        else if wasOnDemand { settings.isActive = true }
+        save()
+    }
 }
 
 struct SettingsView: View {
@@ -33,6 +50,14 @@ struct SettingsView: View {
             model.settings[keyPath: keyPath] = $0
             model.save()
         })
+    }
+
+    private var activeBinding: Binding<Bool> {
+        Binding(get: { model.settings.isActive }, set: { model.setActive($0) })
+    }
+
+    private var filterModeBinding: Binding<String> {
+        Binding(get: { model.settings.filterMode }, set: { model.setFilterMode($0) })
     }
 
     var body: some View {
@@ -61,7 +86,8 @@ struct SettingsView: View {
 #endif
                 }
                 Section("Filterung") {
-                    Toggle("Filterung aktiv", isOn: binding(\.isActive))
+                    Toggle("Filterung aktiv", isOn: activeBinding)
+                        .disabled(!model.canEditActive)
                     Toggle("Doppelformen ersetzen", isOn: binding(\.replacesDoubleForms))
                     Toggle(isOn: binding(\.replacesParticiples)) {
                         HStack { Text("Partizipformen ersetzen"); Text("Beta").font(.caption).foregroundColor(.secondary) }
@@ -72,7 +98,7 @@ struct SettingsView: View {
                     Toggle("Alternatives dunkles Toolbar-Icon", isOn: binding(\.usesDarkIcon))
                 }.disabled(!model.isReady)
                 Section("Filtermodus") {
-                    Picker("Auf welchen Seiten filtern?", selection: binding(\.filterMode)) {
+                    Picker("Auf welchen Seiten filtern?", selection: filterModeBinding) {
                         Text("Überall").tag("Keine")
                         Text("Außer Blocklist").tag("Blocklist")
                         Text("Nur Allowlist").tag("Allowlist")

@@ -53,6 +53,34 @@ final class SettingsStoreTests: XCTestCase {
         XCTAssertEqual(store.load(), updated)
     }
 
+    func testOnDemandModeTransitionsAndDisabledActivation() {
+        let (store, defaults, suite) = temporaryStore()
+        defer { defaults.removePersistentDomain(forName: suite) }
+        store.save(AppSettings())
+        let model = SettingsModel(store: store)
+
+        XCTAssertEqual(model.settings.filterMode, "Blocklist")
+        XCTAssertTrue(model.settings.isActive)
+        model.setFilterMode("Bei Bedarf")
+        XCTAssertEqual(store.load().filterMode, "Bei Bedarf")
+        XCTAssertFalse(store.load().isActive)
+        XCTAssertFalse(model.canEditActive)
+
+        model.setActive(true)
+        XCTAssertFalse(store.load().isActive, "The disabled toggle must not persist activation")
+        model.setFilterMode("Blocklist")
+        XCTAssertEqual(store.load().filterMode, "Blocklist")
+        XCTAssertTrue(store.load().isActive)
+        XCTAssertTrue(model.canEditActive)
+
+        for mode in ["Keine", "Allowlist"] {
+            model.setFilterMode("Bei Bedarf")
+            model.setFilterMode(mode)
+            XCTAssertEqual(store.load().filterMode, mode)
+            XCTAssertTrue(store.load().isActive, mode)
+        }
+    }
+
     func testGetSetMessagesAndSwiftJavaScriptRoundtrip() throws {
         let (store, defaults, suite) = temporaryStore()
         defer { defaults.removePersistentDomain(forName: suite) }

@@ -19,6 +19,8 @@
 		F3000000000000000000000A /* SettingsStoreTests iOS */ = {isa = PBXBuildFile; fileRef = F30000000000000000000022 /* SettingsStoreTests.swift */; };
 		F3000000000000000000000B /* Handler macOS Tests */ = {isa = PBXBuildFile; fileRef = DCB37AB3273AB99E0015A605 /* SafariWebExtensionHandler.swift */; };
 		F3000000000000000000000C /* Handler iOS Tests */ = {isa = PBXBuildFile; fileRef = DCB37AB3273AB99E0015A605 /* SafariWebExtensionHandler.swift */; };
+		F3000000000000000000000D /* SettingsView macOS Tests */ = {isa = PBXBuildFile; fileRef = F30000000000000000000021 /* SettingsView.swift */; };
+		F3000000000000000000000E /* SettingsView iOS Tests */ = {isa = PBXBuildFile; fileRef = F30000000000000000000021 /* SettingsView.swift */; };
 		DCB37ABC273AB99E0015A605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37ABB273AB99E0015A605 /* AppDelegate.swift */; };
 		DCB37ABE273AB99E0015A605 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37ABD273AB99E0015A605 /* SceneDelegate.swift */; };
 		DCB37AC1273AB99E0015A605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB37ABF273AB99E0015A605 /* LaunchScreen.storyboard */; };
@@ -560,8 +562,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
-		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
+		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */, F3000000000000000000000D /* SettingsView macOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
+		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */, F3000000000000000000000E /* SettingsView iOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
