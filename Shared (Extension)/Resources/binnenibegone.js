@@ -121,7 +121,7 @@ async function filter(mtype) {
 			//Entfernen bei Seitenänderungen
 			if (!observer) {
 				try {
-					var observer = new MutationObserver(function(mutations) {
+					observer = new MutationObserver(function(mutations) {
 						var insertedNodes = [];
 						mutations.forEach(function(mutation) {
 							for (var i = 0; i < mutation.addedNodes.length; i++) {
@@ -150,11 +150,11 @@ async function filter(mtype) {
 	});
 }
 
-filter();
+filterUsingEngine();
 
 //On-demand Filterung
 chrome.runtime.onMessage.addListener(message => {
-    filter(message.type);
+    filterUsingEngine(message.type);
 });
 
 function sendCounttoBackgroundScript(e) {
@@ -655,4 +655,64 @@ function entferneBinnenIs(nodes) {
             node.data = s;
         }
     }
+}
+
+// Phase 1 adapter: all new filtering enters the dependency-free engine above.
+// The legacy helpers remain temporarily for a later, behavior-by-behavior migration.
+function textNodesForEngine(element) {
+    var walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, {
+        acceptNode: function (node) {
+            var parent = node.parentElement;
+            if (!parent || !node.data) return NodeFilter.FILTER_REJECT;
+            if (/^(INPUT|TEXTAREA|SCRIPT|STYLE|CODE|NOSCRIPT)$/i.test(parent.nodeName)) return NodeFilter.FILTER_REJECT;
+            if (parent.closest && parent.closest("[contenteditable='true'], [role='textbox']")) return NodeFilter.FILTER_REJECT;
+            return NodeFilter.FILTER_ACCEPT;
+        }
+    });
+    var nodes = [], node;
+    while ((node = walker.nextNode())) nodes.push(node);
+    return nodes;
+}
+
+function applyEngine(nodesToChange, currentSettings) {
+    nodesToChange.forEach(function (node) {
+        var result = BinnenIBegoneFilterEngine.transformText(node.data, currentSettings);
+        if (result.text !== node.data) node.data = result.text;
+        replacementsb += result.changes.genderForms;
+        replacementsd += result.changes.doubleForms;
+        replacementsp += result.changes.participles;
+    });
+}
+
+function filterUsingEngine(mtype) {
+    chrome.storage.sync.get(function (currentSettings) {
+        currentSettings = currentSettings || {};
+        if (currentSettings.aktiv === undefined) currentSettings.aktiv = true;
+        if (currentSettings.filterliste === undefined) currentSettings.filterliste = "Blocklist";
+        if (currentSettings.counter === undefined) currentSettings.counter = false;
+        if ((!currentSettings.aktiv && currentSettings.filterliste !== "Bei Bedarf") || (currentSettings.filterliste === "Bei Bedarf" && mtype !== "ondemand")) return;
+        var list = currentSettings.filterliste === "Allowlist" ? currentSettings.allowlist : currentSettings.blocklist;
+        if (list) {
+            var matches = new RegExp(list.replace(/(\r\n|\n|\r)/g, "|")).test(document.URL);
+            if ((currentSettings.filterliste === "Allowlist" && !matches) || (currentSettings.filterliste === "Blocklist" && matches)) return;
+        }
+        applyEngine(textNodesForEngine(document), currentSettings);
+        if (!observer) {
+            observer = new MutationObserver(function (mutations) {
+                var inserted = [];
+                mutations.forEach(function (mutation) {
+                    Array.prototype.forEach.call(mutation.addedNodes, function (added) {
+                        if (added.nodeType === Node.TEXT_NODE) inserted.push(added);
+                        else if (added.nodeType === Node.ELEMENT_NODE) inserted = inserted.concat(textNodesForEngine(added));
+                    });
+                });
+                applyEngine(inserted, currentSettings);
+                var total = replacementsb + replacementsd + replacementsp;
+                if (currentSettings.counter && total > counterSent) { counterSent = total; sendCounttoBackgroundScript(); }
+            });
+            observer.observe(document, { childList: true, subtree: true });
+        }
+        var total = replacementsb + replacementsd + replacementsp;
+        if (currentSettings.counter && total > counterSent) { counterSent = total; sendCounttoBackgroundScript(); }
+    });
 }

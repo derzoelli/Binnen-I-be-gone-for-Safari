@@ -45,6 +45,12 @@
 		DCB37B1C273AB9A00015A605 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0C273AB9A00015A605 /* manifest.json */; };
 		DCB37B1D273AB9A00015A605 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0D273AB9A00015A605 /* options.html */; };
 		DCB37B1E273AB9A00015A605 /* binnenibegone.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0E273AB9A00015A605 /* binnenibegone.js */; };
+		F10000000000000000000005 /* filter-engine.js in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000012 /* filter-engine.js */; };
+		F10000000000000000000006 /* filter-engine.js in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000012 /* filter-engine.js */; };
+		F10000000000000000000001 /* FilterEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000011 /* FilterEngineTests.swift */; };
+		F10000000000000000000002 /* filter-engine.js in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000012 /* filter-engine.js */; };
+		F10000000000000000000003 /* gender-cases.json in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000013 /* gender-cases.json */; };
+		F10000000000000000000004 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10000000000000000000014 /* XCTest.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +135,11 @@
 		DCED404D2F3539F00019FE9D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCED404E2F353BB80019FE9D /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		DCED404F2F353FE60019FE9D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F10000000000000000000011 /* FilterEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests.swift; sourceTree = "<group>"; };
+		F10000000000000000000012 /* filter-engine.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "../../Shared (Extension)/Resources/filter-engine.js"; sourceTree = "<group>"; };
+		F10000000000000000000013 /* gender-cases.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Fixtures/gender-cases.json; sourceTree = "<group>"; };
+		F10000000000000000000014 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
+		F10000000000000000000015 /* FilterEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilterEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +171,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F10000000000000000000021 /* Frameworks */ = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000004 /* XCTest.framework in Frameworks */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -176,9 +188,11 @@
 				DCED404D2F3539F00019FE9D /* README.md */,
 				DCED404E2F353BB80019FE9D /* .gitignore */,
 				DCED404F2F353FE60019FE9D /* LICENSE */,
+				F10000000000000000000010 /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
+		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000012 /* filter-engine.js */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
 		DCB37AA9273AB99B0015A605 /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +230,7 @@
 				DCB37ACA273AB99E0015A605 /* Binnen-I be gone.app */,
 				DCB37AD7273AB99E0015A605 /* Binnen-I be gone Extension.appex */,
 				DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */,
+				F10000000000000000000015 /* FilterEngineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +366,7 @@
 			productReference = DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		F10000000000000000000020 /* FilterEngineTests */ = { isa = PBXNativeTarget; buildConfigurationList = F10000000000000000000030 /* Build configuration list for PBXNativeTarget "FilterEngineTests" */; buildPhases = (F10000000000000000000022 /* Sources */, F10000000000000000000021 /* Frameworks */, F10000000000000000000023 /* Resources */,); buildRules = (); dependencies = (); name = FilterEngineTests; productName = FilterEngineTests; productReference = F10000000000000000000015 /* FilterEngineTests.xctest */; productType = "com.apple.product-type.bundle.unit-test"; };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -370,10 +386,11 @@
 					DCB37AD6273AB99E0015A605 = {
 						CreatedOnToolsVersion = 13.1;
 					};
-					DCB37AE0273AB99F0015A605 = {
+				DCB37AE0273AB99F0015A605 = {
 						CreatedOnToolsVersion = 13.1;
 					};
 				};
+				F10000000000000000000020 = { CreatedOnToolsVersion = 15.0; };
 			};
 			buildConfigurationList = DCB37AA8273AB99B0015A605 /* Build configuration list for PBXProject "Binnen-I be gone" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -393,6 +410,7 @@
 				DCB37AC9273AB99E0015A605 /* Binnen-I be gone (macOS) */,
 				DCB37AD6273AB99E0015A605 /* Binnen-I be gone Extension (iOS) */,
 				DCB37AE0273AB99F0015A605 /* Binnen-I be gone Extension (macOS) */,
+				F10000000000000000000020 /* FilterEngineTests */,
 			);
 		};
 /* End PBXProject section */
@@ -437,6 +455,7 @@
 				DCB37B1C273AB9A00015A605 /* manifest.json in Resources */,
 				DCB37B1E273AB9A00015A605 /* binnenibegone.js in Resources */,
 				DCB37B17273AB9A00015A605 /* background.js in Resources */,
+				F10000000000000000000006 /* filter-engine.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,9 +471,11 @@
 				DCB37B14273AB9A00015A605 /* manifest.json in Resources */,
 				DCB37B16273AB9A00015A605 /* binnenibegone.js in Resources */,
 				DCB37B0F273AB9A00015A605 /* background.js in Resources */,
+				F10000000000000000000005 /* filter-engine.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F10000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000002 /* filter-engine.js in Resources */, F10000000000000000000003 /* gender-cases.json in Resources */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -493,6 +514,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -970,6 +992,8 @@
 			};
 			name = Release;
 		};
+		F10000000000000000000031 /* Debug */ = { isa = XCBuildConfiguration; buildSettings = { BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_IDENTITY = "-"; GENERATE_INFOPLIST_FILE = YES; MACOSX_DEPLOYMENT_TARGET = 10.15; PRODUCT_BUNDLE_IDENTIFIER = "com.robinzoellner.Binnen-I-be-gone.FilterEngineTests"; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = macosx; SWIFT_VERSION = 5.0; TEST_HOST = ""; }; name = Debug; };
+		F10000000000000000000032 /* Release */ = { isa = XCBuildConfiguration; buildSettings = { BUNDLE_LOADER = "$(TEST_HOST)"; CODE_SIGN_IDENTITY = "-"; GENERATE_INFOPLIST_FILE = YES; MACOSX_DEPLOYMENT_TARGET = 10.15; PRODUCT_BUNDLE_IDENTIFIER = "com.robinzoellner.Binnen-I-be-gone.FilterEngineTests"; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = macosx; SWIFT_VERSION = 5.0; TEST_HOST = ""; }; name = Release; };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1018,6 +1042,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F10000000000000000000030 /* Build configuration list for PBXNativeTarget "FilterEngineTests" */ = { isa = XCConfigurationList; buildConfigurations = (F10000000000000000000031 /* Debug */, F10000000000000000000032 /* Release */,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 	};
 	rootObject = DCB37AA5273AB99B0015A605 /* Project object */;
