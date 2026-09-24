@@ -4,6 +4,7 @@ var root = $.NSFileManager.defaultManager.currentDirectoryPath.js;
 new Function(read(root + "/Shared (Extension)/Resources/options.js"));
 var legacy = {aktiv: false, filterliste: "Blocklist", allowlist: "legacy.example", blocklist: "private.example", counter: true};
 var nativeStore = null;
+var statistics = {genderForms: 0, doubleForms: 0, participles: 0};
 var nativeCalls = [];
 var messages = [];
 var listener, click;
@@ -15,6 +16,13 @@ var chrome = {
         sendNativeMessage: function (id, request, callback) {
             if (id !== "com.robinzoellner.Binnen-I-be-gone") throw new Error("wrong application ID");
             nativeCalls.push(request);
+            if (request.type === "incrementStatistics") {
+                ["genderForms", "doubleForms", "participles"].forEach(function (key) {
+                    statistics[key] += request.changes[key];
+                });
+                callback({statistics: statistics});
+                return;
+            }
             if (!nativeStore) nativeStore = Object.assign({}, request.legacySettings);
             if (request.type === "setSettings") nativeStore = Object.assign({}, nativeStore, request.settings);
             callback({settings: Object.assign({}, nativeStore)});
@@ -60,6 +68,32 @@ listener({type: "setSettings", settings: {filterliste: "Blocklist", aktiv: true}
 click();
 assert(nativeStore.aktiv === false, "toolbar toggle reaches native store");
 assert(messages[messages.length - 1].message.type === "settingsChanged", "toolbar deactivation reaches content script");
-listener({type: "count", countBinnenIreplacements: 2, countDoppelformreplacements: 1, countPartizipreplacements: 0}, {tab: {id: 42}}, function () {});
+listener({type: "count", countBinnenIreplacements: 2, countDoppelformreplacements: 1,
+    countPartizipreplacements: 0, delta: {genderForms: 2, doubleForms: 1, participles: 0}},
+    {tab: {id: 42, url: "https://private.example/path", title: "Private"}}, function () {});
 assert(badges[badges.length - 1].text === "3", "counter badge");
+assert(statistics.genderForms === 2 && statistics.doubleForms === 1, "positive delta increments statistics");
+var statsMessage = nativeCalls[nativeCalls.length - 1];
+assert(statsMessage.type === "incrementStatistics", "statistics native command");
+assert(Object.keys(statsMessage).sort().join(",") === "changes,type", "no tab metadata in native payload");
+assert(Object.keys(statsMessage.changes).sort().join(",") === "doubleForms,genderForms,participles", "only aggregate counts cross native boundary");
+
+listener({type: "setSettings", settings: {counter: false}}, {}, function () {});
+assert(badges[badges.length - 1].text === "", "disabling the counter clears an existing badge immediately");
+var nativeCount = nativeCalls.length;
+listener({type: "count", countBinnenIreplacements: 3, countDoppelformreplacements: 1,
+    countPartizipreplacements: 0, delta: {genderForms: 1, doubleForms: 0, participles: 0}},
+    {tab: {id: 42}}, function () {});
+assert(statistics.genderForms === 3, "counter=false still persists the delta");
+assert(badges[badges.length - 1].text === "", "counter=false clears the badge");
+listener({type: "count", countBinnenIreplacements: 3, countDoppelformreplacements: 1,
+    countPartizipreplacements: 0, delta: {genderForms: 0, doubleForms: 0, participles: 0}},
+    {tab: {id: 42}}, function () {});
+assert(nativeCalls.length === nativeCount + 1, "zero delta causes no native increment");
+
+eval(read(root + "/Shared (Extension)/Resources/background.js")); // MV2 background restart.
+listener({type: "count", countBinnenIreplacements: 4, countDoppelformreplacements: 1,
+    countPartizipreplacements: 0, delta: {genderForms: 1, doubleForms: 0, participles: 0}},
+    {tab: {id: 42}}, function () {});
+assert(statistics.genderForms === 4, "background restart does not affect delta accounting");
 console.log("Passed settings broker assertions.");

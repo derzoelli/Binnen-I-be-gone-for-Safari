@@ -27,7 +27,13 @@
     }
 
     function cache(settings, callback) {
+        var clearBadges = !settings.counter && (!currentSettings || currentSettings.counter);
         currentSettings = settings;
+        if (clearBadges) {
+            chrome.tabs.query({}, function (tabs) {
+                (tabs || []).forEach(function (tab) { action.setBadgeText({ text: "", tabId: tab.id }); });
+            });
+        }
         storageSet(settings, function () {
             updateIcon(settings);
             if (callback) callback(settings);
@@ -95,7 +101,22 @@
     }
 
     function handleCount(message, sender) {
-        if (!sender.tab || !currentSettings || !currentSettings.counter) return;
+        if (!sender.tab) return;
+        var delta = message.delta;
+        if (delta && ["genderForms", "doubleForms", "participles"].every(function (key) {
+            return Number.isSafeInteger(delta[key]) && delta[key] >= 0;
+        }) && delta.genderForms + delta.doubleForms + delta.participles > 0) {
+            // Only aggregate counts cross the native boundary; no tab or page metadata.
+            chrome.runtime.sendNativeMessage(applicationID, {
+                type: "incrementStatistics",
+                changes: { genderForms: delta.genderForms, doubleForms: delta.doubleForms,
+                           participles: delta.participles }
+            }, function () { void chrome.runtime.lastError; });
+        }
+        if (!currentSettings || !currentSettings.counter) {
+            action.setBadgeText({ text: "", tabId: sender.tab.id });
+            return;
+        }
         var total = message.countBinnenIreplacements + message.countDoppelformreplacements + message.countPartizipreplacements;
         action.setBadgeText({ text: total > 0 ? String(total) : "", tabId: sender.tab.id });
         action.setTitle({ title: "Filterung aktiv\n\nGefilterte Ausdrücke auf dieser Seite\nBinnen-Is: " +

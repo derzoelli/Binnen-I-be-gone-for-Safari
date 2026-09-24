@@ -6,7 +6,8 @@
     var activeSettings = null;
     var activeMode = null;
     var counters = { genderForms: 0, doubleForms: 0, participles: 0, total: 0 };
-    var counterSent = 0;
+    var reported = { genderForms: 0, doubleForms: 0, participles: 0 };
+    var reportedCounterSetting = null;
 
     function isEligible(node) {
         var parent = node && node.parentElement;
@@ -46,12 +47,22 @@
     }
 
     function reportCount() {
-        if (!activeSettings.counter || counters.total <= counterSent) return;
-        counterSent = counters.total;
+        var delta = {
+            genderForms: counters.genderForms - reported.genderForms,
+            doubleForms: counters.doubleForms - reported.doubleForms,
+            participles: counters.participles - reported.participles
+        };
+        var hasDelta = delta.genderForms + delta.doubleForms + delta.participles > 0;
+        var counterChanged = reportedCounterSetting !== activeSettings.counter;
+        if (!hasDelta && (!counterChanged || counters.total === 0)) return;
+        reported = { genderForms: counters.genderForms, doubleForms: counters.doubleForms,
+                     participles: counters.participles };
+        reportedCounterSetting = activeSettings.counter;
         chrome.runtime.sendMessage({
             countBinnenIreplacements: counters.genderForms,
             countDoppelformreplacements: counters.doubleForms,
             countPartizipreplacements: counters.participles,
+            delta: delta,
             type: "count"
         });
     }
