@@ -26,7 +26,10 @@ final class DOMIntegrationTests: XCTestCase, WKNavigationDelegate {
             set: function(values) { Object.assign(window.__settings, values); }
           }},
           runtime: {
-            sendMessage: function(message) { window.__messages.push(message); },
+            sendMessage: function(message, callback) {
+              if (message.type === 'getSettings') { callback({settings: Object.assign({}, window.__settings)}); return; }
+              window.__messages.push(message);
+            },
             onMessage: {addListener: function(listener) { window.__filterListener = listener; }}
           }
         };

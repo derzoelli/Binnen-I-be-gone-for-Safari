@@ -7,12 +7,6 @@
     var activeMode = null;
     var counters = { genderForms: 0, doubleForms: 0, participles: 0, total: 0 };
     var counterSent = 0;
-    var defaults = {
-        aktiv: true, invertiert: false, counter: false, doppelformen: true,
-        partizip: false, skip_topic: false, filterliste: "Blocklist",
-        allowlist: ".gv.at\n.ac.at\nderstandard.at\ndiestandard.at",
-        blocklist: "stackoverflow.com\ngithub.com\nhttps://developer"
-    };
 
     function isEligible(node) {
         var parent = node && node.parentElement;
@@ -91,13 +85,9 @@
     }
 
     function filter(mode) {
-        chrome.storage.sync.get(function (stored) {
-            var missing = {}, settings = {};
-            Object.keys(defaults).forEach(function (key) {
-                if (stored[key] === undefined || stored[key] === "undefined") missing[key] = defaults[key];
-                settings[key] = Object.prototype.hasOwnProperty.call(missing, key) ? missing[key] : stored[key];
-            });
-            if (Object.keys(missing).length) chrome.storage.sync.set(missing);
+        chrome.runtime.sendMessage({ type: "getSettings" }, function (response) {
+            var settings = response && response.settings;
+            if (!settings) return;
             if (!shouldFilter(settings, mode)) {
                 activeSettings = null;
                 return;
@@ -110,5 +100,7 @@
     }
 
     filter();
-    chrome.runtime.onMessage.addListener(function (message) { filter(message.type); });
+    chrome.runtime.onMessage.addListener(function (message) {
+        if (message.type === "ondemand" || message.type === "settingsChanged") filter(message.type);
+    });
 }());

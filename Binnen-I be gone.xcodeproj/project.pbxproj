@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30000000000000000000001 /* AppSettings iOS App */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
+		F30000000000000000000002 /* AppSettings macOS App */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
+		F30000000000000000000003 /* AppSettings iOS Extension */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
+		F30000000000000000000004 /* AppSettings macOS Extension */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
+		F30000000000000000000005 /* AppSettings macOS Tests */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
+		F30000000000000000000006 /* AppSettings iOS Tests */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
+		F30000000000000000000007 /* SettingsView iOS App */ = {isa = PBXBuildFile; fileRef = F30000000000000000000021 /* SettingsView.swift */; };
+		F30000000000000000000008 /* SettingsView macOS App */ = {isa = PBXBuildFile; fileRef = F30000000000000000000021 /* SettingsView.swift */; };
+		F30000000000000000000009 /* SettingsStoreTests macOS */ = {isa = PBXBuildFile; fileRef = F30000000000000000000022 /* SettingsStoreTests.swift */; };
+		F3000000000000000000000A /* SettingsStoreTests iOS */ = {isa = PBXBuildFile; fileRef = F30000000000000000000022 /* SettingsStoreTests.swift */; };
+		F3000000000000000000000B /* Handler macOS Tests */ = {isa = PBXBuildFile; fileRef = DCB37AB3273AB99E0015A605 /* SafariWebExtensionHandler.swift */; };
+		F3000000000000000000000C /* Handler iOS Tests */ = {isa = PBXBuildFile; fileRef = DCB37AB3273AB99E0015A605 /* SafariWebExtensionHandler.swift */; };
 		DCB37ABC273AB99E0015A605 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37ABB273AB99E0015A605 /* AppDelegate.swift */; };
 		DCB37ABE273AB99E0015A605 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37ABD273AB99E0015A605 /* SceneDelegate.swift */; };
 		DCB37AC1273AB99E0015A605 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB37ABF273AB99E0015A605 /* LaunchScreen.storyboard */; };
@@ -105,6 +117,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F30000000000000000000020 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shared (Settings)/AppSettings.swift"; sourceTree = SOURCE_ROOT; };
+		F30000000000000000000021 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F30000000000000000000022 /* SettingsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests/SettingsStoreTests.swift; sourceTree = "<group>"; };
+		F30000000000000000000023 /* iOS App entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Binnen-I be gone.entitlements"; sourceTree = "<group>"; };
+		F30000000000000000000024 /* iOS Extension entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Binnen-I be gone.entitlements"; sourceTree = "<group>"; };
 		DC96764527861575001E5242 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = ../en.lproj/Main.html; sourceTree = "<group>"; };
 		DC967646278617A5001E5242 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DC967647278617A5001E5242 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -192,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB37AA9273AB99B0015A605 /* Shared (App) */,
+				F30000000000000000000020 /* AppSettings.swift */,
 				DCB37AB2273AB99E0015A605 /* Shared (Extension) */,
 				DCB37ABA273AB99E0015A605 /* iOS (App) */,
 				DCB37ACB273AB99E0015A605 /* macOS (App) */,
@@ -205,11 +223,12 @@
 			);
 			sourceTree = "<group>";
 		};
-		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000016 /* DOMIntegrationTests.swift */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
+		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000016 /* DOMIntegrationTests.swift */, F30000000000000000000022 /* SettingsStoreTests.swift */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
 		DCB37AA9273AB99B0015A605 /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
 				DCB37AB0273AB99B0015A605 /* ViewController.swift */,
+				F30000000000000000000021 /* SettingsView.swift */,
 				DCB37AB1273AB99E0015A605 /* Assets.xcassets */,
 				DCB37AAA273AB99B0015A605 /* Resources */,
 			);
@@ -257,6 +276,7 @@
 				DCB37ABF273AB99E0015A605 /* LaunchScreen.storyboard */,
 				DCB37AC2273AB99E0015A605 /* Main.storyboard */,
 				DCB37AC5273AB99E0015A605 /* Info.plist */,
+				F30000000000000000000023 /* iOS App entitlements */,
 			);
 			path = "iOS (App)";
 			sourceTree = "<group>";
@@ -276,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB37ADC273AB99E0015A605 /* Info.plist */,
+				F30000000000000000000024 /* iOS Extension entitlements */,
 			);
 			path = "iOS (Extension)";
 			sourceTree = "<group>";
@@ -503,6 +524,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB37AF0273AB99F0015A605 /* ViewController.swift in Sources */,
+				F30000000000000000000001 /* AppSettings iOS App */,
+				F30000000000000000000007 /* SettingsView iOS App */,
 				DCB37ABC273AB99E0015A605 /* AppDelegate.swift in Sources */,
 				DCB37ABE273AB99E0015A605 /* SceneDelegate.swift in Sources */,
 			);
@@ -513,6 +536,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB37AF1273AB99F0015A605 /* ViewController.swift in Sources */,
+				F30000000000000000000002 /* AppSettings macOS App */,
+				F30000000000000000000008 /* SettingsView macOS App */,
 				DCB37ACD273AB99E0015A605 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB37AF4273AB99F0015A605 /* SafariWebExtensionHandler.swift in Sources */,
+				F30000000000000000000003 /* AppSettings iOS Extension */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,11 +556,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB37AF5273AB99F0015A605 /* SafariWebExtensionHandler.swift in Sources */,
+				F30000000000000000000004 /* AppSettings macOS Extension */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
-		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */,); runOnlyForDeploymentPostprocessing = 0; };
+		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
+		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -718,6 +745,7 @@
 		DCB37AF9273AB99F0015A605 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "iOS (Extension)/Binnen-I be gone.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 040226;
 				DEVELOPMENT_TEAM = N893T3VXPL;
@@ -749,6 +777,7 @@
 		DCB37AFA273AB99F0015A605 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "iOS (Extension)/Binnen-I be gone.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 040226;
 				DEVELOPMENT_TEAM = N893T3VXPL;
@@ -781,6 +810,7 @@
 		DCB37AFD273AB99F0015A605 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "iOS (App)/Binnen-I be gone.entitlements";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -822,6 +852,7 @@
 		DCB37AFE273AB99F0015A605 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "iOS (App)/Binnen-I be gone.entitlements";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

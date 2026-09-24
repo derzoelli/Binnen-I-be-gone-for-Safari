@@ -39,3 +39,15 @@ Wenn ihr am Betaprogramm in TestFlight teilnehmen wollt, könnt ihr hier beitret
 
 
 Datenschutz: Die App enthält keinerlei Tracker, sammelt keinerlei Daten und speichert keine Informationen über euch oder die besuchten Webseiten. Sie ist ein simpler Filter, der ausschließlich die Darstellung von Webseiten in eurem Browser anpasst.
+
+## Einstellungen (Phase 2)
+
+Die iOS-/iPadOS- und macOS-App zeigen dieselben nativen SwiftUI-Einstellungen. `Shared (Settings)/AppSettings.swift` enthält die typisierten Einstellungen und **alle Standardwerte**. App und Safari-Erweiterung lesen/schreiben über `UserDefaults(suiteName:)` in der App Group `group.com.robinzoellner.Binnen-I-be-gone`.
+
+Beim ersten Start der Web-Extension liest `background.js` die bisherigen Werte aus `chrome.storage.sync` und übergibt sie mit `getSettings` an den nativen Handler. Dieser speichert sie einmalig mit `settingsSchemaVersion = 1` in der App Group; fehlende Werte erhalten die Defaults. Sobald der Store initialisiert ist, kann ein späterer Migrationsaufruf weder Allowlist noch Blocklist überschreiben. `chrome.storage.sync` bleibt als Laufzeit-/Legacy-Cache bestehen. Beim nächsten Seitenaufruf holt die Extension die aktuellen Werte erneut aus der App Group. Die App lässt Einstellungen vor Abschluss der Erst-Migration bewusst noch nicht bearbeiten, damit eine zuerst geöffnete App keine vorhandenen Listen verdrängt.
+
+Der Nachrichtenweg ist `Content Script/Options → background.js → SafariWebExtensionHandler.swift → App Group`. Die JavaScript-API des Brokers ist `getSettings` und `setSettings`; der native Handler antwortet mit `{settings: …, settingsSchemaVersion: 1}`. Die alten JavaScript-Schlüssel (`aktiv`, `filterliste` usw.) bleiben erhalten. Bei einem vorübergehend nicht verfügbaren Native Handler nutzt die Extension ihren Sync-Cache.
+
+Für signierte Builds müssen die App Group und die zugehörigen Provisioning Profiles im Apple-Developer-Account für **beide** Bundle IDs (`com.robinzoellner.Binnen-I-be-gone` und `.Extension`) auf iOS und macOS aktiviert sein. Die vier Entitlements-Dateien sind im Xcode-Projekt hinterlegt. Unsigned Simulator-/lokale Test-Builds prüfen die Kompilierung, nicht die reale Safari↔App-Group-Berechtigung; ein manueller Roundtrip auf einem signierten Gerät/Mac bleibt erforderlich.
+
+Tests: `sh scripts/run_tests.sh` führt die 123 Filter-Fälle und Broker-Assertions aus. Die Xcode-Schemes für macOS und iOS enthalten Filter-, DOM- und Settings-XCTest-Fälle.
