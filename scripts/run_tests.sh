@@ -1,5 +1,5 @@
 #!/bin/sh
 set -eu
 
-# JS regex sanity checks via JavaScriptCore (no Node dependency)
+# Shared JavaScriptCore fixture assertions (same corpus as the Xcode test target).
 osascript -l JavaScript scripts/regex_sanity_test.js

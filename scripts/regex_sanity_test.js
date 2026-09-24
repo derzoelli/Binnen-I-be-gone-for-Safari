@@ -1,35 +1,18 @@
-const samples = [
-    "Hacker'innen",
-    "Hacker’innen",
-    "Hacker*innen",
-    "Hacker:innen",
-    "Hacker_innen",
-    "Hacker/innen",
-    "Hacker/-innen",
-    "HackerInnen",
-    "HackerINNen",
-    "Bürgerinnen und Bürger",
-    "Bürgerinnen und Bürgern",
-    "Studierende",
-    "Lehrende",
-    "Mitarbeitende",
-    "Hackerinnen",
-    "Hackerinnen und Hacker"
-];
-
-// From binnenibegone.js (probe / detection gate)
-const probeBinnenI = /[a-zäöüß\u00AD\u200B]{2}((\/-?|_|\*|:|·|•|\.|'|’| und -)?In|(\/-?|_|\*|:|·|•|\.|'|’| und -)in(n[\*|\.]en)?|INNen|[ïÏ]n|\([Ii]n+(en\)|\)en)?|\/inne?)(?!(\w{1,2}\b)|[A-Z]|[cf]o|te[gr]|act|clu|dex|di|fin|line|ner|put|sert|stall|stan|stru|val|vent|v?it|voice)|[A-ZÄÖÜß\u00AD\u200B]{3}(\/-?|_|\*|:|·|•|\.|'|’)IN[\b|(NEN)]|[a-zäöüß]{2}\*nnen|[A-ZÄÖÜß]{2}\*NNEN/;
-
-// Replacement check that gates Binnen-I replacements
-const replaceCheck = /[a-zäöüß](\/-?|_|\*|:|·|•|\.|'|’| und -)in\b|[a-zäöüß](\/-?|_|\*|:|·|•|\.|'|’| und -)inn(\*|\.|\))?en|[a-zäöüß]\*nnen|[a-zäöüß](\(|\/)in|[a-zäöüß]INNen|[a-zäöüß]ïn/i;
-
-function report(label, regex) {
-    console.log(label);
-    samples.forEach((s) => {
-        console.log(`${regex.test(s) ? "✓" : "✗"} ${s}`);
-    });
-    console.log("");
-}
-
-report("probeBinnenI", probeBinnenI);
-report("replaceCheck", replaceCheck);
+ObjC.import("Foundation");
+function read(path) { return $.NSString.alloc.initWithContentsOfFileEncodingError($(path), $.NSUTF8StringEncoding, null).js; }
+var root = $.NSFileManager.defaultManager.currentDirectoryPath.js;
+eval(read(root + "/Shared (Extension)/Resources/filter-engine.js"));
+new Function(read(root + "/Shared (Extension)/Resources/binnenibegone.js"));
+var cases = JSON.parse(read(root + "/Tests/Fixtures/gender-cases.json"));
+var failures = [];
+cases.forEach(function (testCase, index) {
+    var actual = BinnenIBegoneFilterEngine.transformText(testCase.input, testCase.settings);
+    if (actual.text !== testCase.expected) failures.push((index + 1) + " [" + testCase.category + "]: expected '" + testCase.expected + "', got '" + actual.text + "'");
+    if (testCase.expectedChanges) {
+        Object.keys(testCase.expectedChanges).forEach(function (key) {
+            if (actual.changes[key] !== testCase.expectedChanges[key]) failures.push((index + 1) + " [" + key + "]: expected " + testCase.expectedChanges[key] + ", got " + actual.changes[key]);
+        });
+    }
+});
+if (failures.length) throw new Error(failures.join("\n"));
+console.log("Passed " + cases.length + " filter-engine fixture assertions.");
