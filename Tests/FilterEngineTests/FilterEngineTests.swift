@@ -14,8 +14,16 @@ final class FilterEngineTests: XCTestCase {
         for testCase in cases {
             context.setObject(testCase["input"] as! String, forKeyedSubscript: "fixtureInput" as NSString)
             context.setObject(testCase["settings"] ?? [:], forKeyedSubscript: "fixtureSettings" as NSString)
-            let actual = context.evaluateScript("BinnenIBegoneFilterEngine.transformText(fixtureInput, fixtureSettings).text")?.toString()
-            XCTAssertEqual(actual, testCase["expected"] as? String, "\(testCase["category"] as! String): \(testCase["input"] as! String)")
+            let result = context.evaluateScript("JSON.stringify(BinnenIBegoneFilterEngine.transformText(fixtureInput, fixtureSettings))")?.toString()
+            let data = try XCTUnwrap(result?.data(using: .utf8))
+            let actual = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+            XCTAssertEqual(actual["text"] as? String, testCase["expected"] as? String, "\(testCase["category"] as! String): \(testCase["input"] as! String)")
+            if let expectedChanges = testCase["expectedChanges"] as? [String: Int] {
+                let changes = try XCTUnwrap(actual["changes"] as? [String: Int])
+                for (key, expected) in expectedChanges {
+                    XCTAssertEqual(changes[key], expected, "\(testCase["input"] as! String), \(key)")
+                }
+            }
         }
     }
 }
