@@ -118,4 +118,40 @@ final class DOMIntegrationTests: XCTestCase, WKNavigationDelegate {
         _ = try evaluate("window.__settings.doppelformen=true; window.__settings.partizip=true; window.__filterListener({type:'ondemand'})", in: optional)
         XCTAssertEqual(try evaluate("document.getElementById('normal').textContent", in: optional) as? String, "Bürger; Studenten")
     }
+
+    func testStatisticsDeltasSurviveRescansAndOnDemand() throws {
+        let pageView = try page("<p id='normal'>Mitarbeiter*innen</p>",
+                                settings: "{aktiv:true, filterliste:'Blocklist', blocklist:'', counter:false}")
+        XCTAssertEqual(try evaluate("window.__messages.length", in: pageView) as? Int, 1)
+        XCTAssertEqual(try evaluate("window.__messages[0].delta.genderForms", in: pageView) as? Int, 1)
+        XCTAssertEqual(try evaluate("window.__messages[0].countBinnenIreplacements", in: pageView) as? Int, 1)
+
+        _ = try evaluate("window.__filterListener({type:'settingsChanged'})", in: pageView)
+        XCTAssertEqual(try evaluate("window.__messages.length", in: pageView) as? Int, 1,
+                       "Rescanning transformed text must not count again")
+        _ = try evaluate("document.getElementById('normal').appendChild(document.createTextNode(' Nutzer:innen')); true", in: pageView)
+        try settled(pageView)
+        XCTAssertEqual(try evaluate("window.__messages[1].delta.genderForms", in: pageView) as? Int, 1)
+        XCTAssertEqual(try evaluate("window.__messages[1].countBinnenIreplacements", in: pageView) as? Int, 2)
+
+        // The content script owns the reported snapshot, independent of background state.
+        _ = try evaluate("window.__messages = []; document.getElementById('normal').appendChild(document.createTextNode(' Mitarbeiter*innen')); true", in: pageView)
+        try settled(pageView)
+        XCTAssertEqual(try evaluate("window.__messages.length", in: pageView) as? Int, 1)
+        XCTAssertEqual(try evaluate("window.__messages[0].delta.genderForms", in: pageView) as? Int, 1)
+        XCTAssertEqual(try evaluate("window.__messages[0].countBinnenIreplacements", in: pageView) as? Int, 3)
+
+        _ = try evaluate("window.__settings.counter=true; window.__filterListener({type:'settingsChanged'})", in: pageView)
+        XCTAssertEqual(try evaluate("window.__messages[1].delta.genderForms", in: pageView) as? Int, 0,
+                       "Enabling the badge can repeat page totals without incrementing statistics")
+
+        let demand = try page("<p id='normal'>Mitarbeiter*innen</p>",
+                              settings: "{aktiv:false, filterliste:'Bei Bedarf', counter:false}")
+        XCTAssertEqual(try evaluate("window.__messages.length", in: demand) as? Int, 0)
+        _ = try evaluate("window.__filterListener({type:'ondemand'})", in: demand)
+        XCTAssertEqual(try evaluate("window.__messages.length", in: demand) as? Int, 1)
+        XCTAssertEqual(try evaluate("window.__messages[0].delta.genderForms", in: demand) as? Int, 1)
+        _ = try evaluate("window.__filterListener({type:'ondemand'})", in: demand)
+        XCTAssertEqual(try evaluate("window.__messages.length", in: demand) as? Int, 1)
+    }
 }

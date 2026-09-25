@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F40000000000000000000001 /* Statistics iOS App */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
+		F40000000000000000000002 /* Statistics macOS App */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
+		F40000000000000000000003 /* Statistics iOS Extension */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
+		F40000000000000000000004 /* Statistics macOS Extension */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
+		F40000000000000000000005 /* Statistics macOS Tests */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
+		F40000000000000000000006 /* Statistics iOS Tests */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
+		F40000000000000000000007 /* StatisticsTests macOS */ = {isa = PBXBuildFile; fileRef = F40000000000000000000021 /* StatisticsTests.swift */; };
+		F40000000000000000000008 /* StatisticsTests iOS */ = {isa = PBXBuildFile; fileRef = F40000000000000000000021 /* StatisticsTests.swift */; };
 		F30000000000000000000001 /* AppSettings iOS App */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
 		F30000000000000000000002 /* AppSettings macOS App */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
 		F30000000000000000000003 /* AppSettings iOS Extension */ = {isa = PBXBuildFile; fileRef = F30000000000000000000020 /* AppSettings.swift */; };
@@ -119,6 +127,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F40000000000000000000020 /* FilterStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shared (Statistics)/FilterStatistics.swift"; sourceTree = SOURCE_ROOT; };
+		F40000000000000000000021 /* StatisticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests/StatisticsTests.swift; sourceTree = "<group>"; };
 		F30000000000000000000020 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shared (Settings)/AppSettings.swift"; sourceTree = SOURCE_ROOT; };
 		F30000000000000000000021 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F30000000000000000000022 /* SettingsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests/SettingsStoreTests.swift; sourceTree = "<group>"; };
@@ -212,6 +222,7 @@
 			children = (
 				DCB37AA9273AB99B0015A605 /* Shared (App) */,
 				F30000000000000000000020 /* AppSettings.swift */,
+				F40000000000000000000020 /* FilterStatistics.swift */,
 				DCB37AB2273AB99E0015A605 /* Shared (Extension) */,
 				DCB37ABA273AB99E0015A605 /* iOS (App) */,
 				DCB37ACB273AB99E0015A605 /* macOS (App) */,
@@ -225,7 +236,7 @@
 			);
 			sourceTree = "<group>";
 		};
-		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000016 /* DOMIntegrationTests.swift */, F30000000000000000000022 /* SettingsStoreTests.swift */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
+		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000016 /* DOMIntegrationTests.swift */, F30000000000000000000022 /* SettingsStoreTests.swift */, F40000000000000000000021 /* StatisticsTests.swift */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
 		DCB37AA9273AB99B0015A605 /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +539,7 @@
 				DCB37AF0273AB99F0015A605 /* ViewController.swift in Sources */,
 				F30000000000000000000001 /* AppSettings iOS App */,
 				F30000000000000000000007 /* SettingsView iOS App */,
+				F40000000000000000000001 /* Statistics iOS App */,
 				DCB37ABC273AB99E0015A605 /* AppDelegate.swift in Sources */,
 				DCB37ABE273AB99E0015A605 /* SceneDelegate.swift in Sources */,
 			);
@@ -540,6 +552,7 @@
 				DCB37AF1273AB99F0015A605 /* ViewController.swift in Sources */,
 				F30000000000000000000002 /* AppSettings macOS App */,
 				F30000000000000000000008 /* SettingsView macOS App */,
+				F40000000000000000000002 /* Statistics macOS App */,
 				DCB37ACD273AB99E0015A605 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +563,7 @@
 			files = (
 				DCB37AF4273AB99F0015A605 /* SafariWebExtensionHandler.swift in Sources */,
 				F30000000000000000000003 /* AppSettings iOS Extension */,
+				F40000000000000000000003 /* Statistics iOS Extension */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,11 +573,12 @@
 			files = (
 				DCB37AF5273AB99F0015A605 /* SafariWebExtensionHandler.swift in Sources */,
 				F30000000000000000000004 /* AppSettings macOS Extension */,
+				F40000000000000000000004 /* Statistics macOS Extension */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */, F3000000000000000000000D /* SettingsView macOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
-		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */, F3000000000000000000000E /* SettingsView iOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
+		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */, F3000000000000000000000D /* SettingsView macOS Tests */, F40000000000000000000005 /* Statistics macOS Tests */, F40000000000000000000007 /* StatisticsTests macOS */,); runOnlyForDeploymentPostprocessing = 0; };
+		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */, F3000000000000000000000E /* SettingsView iOS Tests */, F40000000000000000000006 /* Statistics iOS Tests */, F40000000000000000000008 /* StatisticsTests iOS */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */

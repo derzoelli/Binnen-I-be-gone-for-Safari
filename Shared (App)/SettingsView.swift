@@ -38,8 +38,30 @@ final class SettingsModel: ObservableObject {
     }
 }
 
+final class StatisticsModel: ObservableObject {
+    @Published private(set) var statistics = FilterStatistics()
+    private let store: StatsStore?
+
+    init(store: StatsStore? = StatsStore()) {
+        self.store = store
+        reload()
+    }
+
+    var isAvailable: Bool { store != nil }
+
+    func reload() {
+        if let store = store, let current = try? store.load() { statistics = current }
+    }
+
+    func reset() {
+        if let store = store, let cleared = try? store.reset() { statistics = cleared }
+    }
+}
+
 struct SettingsView: View {
     @StateObject private var model = SettingsModel()
+    @StateObject private var statisticsModel = StatisticsModel()
+    @State private var confirmsStatisticsReset = false
     @Environment(\.scenePhase) private var scenePhase
 #if os(macOS)
     @State private var extensionEnabled: Bool?
@@ -85,6 +107,20 @@ struct SettingsView: View {
                         .foregroundColor(.secondary)
 #endif
                 }
+                Section("Statistik") {
+                    HStack {
+                        Text("Gefilterte Ausdrücke")
+                        Spacer()
+                        Text(statisticsModel.statistics.total.formatted()).font(.headline)
+                    }
+                    HStack { Text("Binnen-I-Formen"); Spacer(); Text(statisticsModel.statistics.genderForms.formatted()) }
+                    HStack { Text("Doppelformen"); Spacer(); Text(statisticsModel.statistics.doubleForms.formatted()) }
+                    HStack { Text("Partizipformen"); Spacer(); Text(statisticsModel.statistics.participles.formatted()) }
+                    Text("Seit \(statisticsModel.statistics.resetDate.formatted(date: .abbreviated, time: .shortened))")
+                        .foregroundColor(.secondary)
+                    Button("Statistik zurücksetzen", role: .destructive) { confirmsStatisticsReset = true }
+                        .disabled(!statisticsModel.isAvailable)
+                }
                 Section("Filterung") {
                     Toggle("Filterung aktiv", isOn: activeBinding)
                         .disabled(!model.canEditActive)
@@ -126,10 +162,16 @@ struct SettingsView: View {
 #endif
         .onAppear { refresh() }
         .onChange(of: scenePhase) { phase in if phase == .active { refresh() } }
+        .confirmationDialog("Statistik zurücksetzen?", isPresented: $confirmsStatisticsReset, titleVisibility: .visible) {
+            Button("Statistik zurücksetzen", role: .destructive) { statisticsModel.reset() }
+        } message: {
+            Text("Alle aggregierten Zähler werden auf null gesetzt.")
+        }
     }
 
     private func refresh() {
         model.reload()
+        statisticsModel.reload()
 #if os(macOS)
         SFSafariExtensionManager.getStateOfSafariExtension(withIdentifier: "com.robinzoellner.Binnen-I-be-gone.Extension") { state, _ in
             DispatchQueue.main.async { extensionEnabled = state?.isEnabled }
