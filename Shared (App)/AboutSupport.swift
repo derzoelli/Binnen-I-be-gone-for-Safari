@@ -86,7 +86,7 @@ struct AboutView: View {
                     Link("TestFlight", destination: AppLinks.testFlight)
                 }
                 Section("Datenschutz") {
-                    Text("Binnen-I be gone enthält keine Tracker und sammelt keine Browser- oder Nutzungsdaten.")
+                    Text("Binnen-I be gone enthält keine Tracker und überträgt keine Browser- oder Nutzungsdaten an externe Server.")
                     Text("Die Statistik wird ausschließlich lokal gespeichert und enthält nur aggregierte Zähler.")
                 }
                 Section("Open Source") {
