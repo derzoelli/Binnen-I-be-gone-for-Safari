@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F50000000000000000000001 /* AboutSupport iOS App */ = {isa = PBXBuildFile; fileRef = F50000000000000000000020 /* AboutSupport.swift */; };
+		F50000000000000000000002 /* AboutSupport macOS App */ = {isa = PBXBuildFile; fileRef = F50000000000000000000020 /* AboutSupport.swift */; };
+		F50000000000000000000003 /* RootView iOS App */ = {isa = PBXBuildFile; fileRef = F50000000000000000000021 /* RootView.swift */; };
+		F50000000000000000000004 /* RootView macOS App */ = {isa = PBXBuildFile; fileRef = F50000000000000000000021 /* RootView.swift */; };
+		F50000000000000000000005 /* Supporters iOS App */ = {isa = PBXBuildFile; fileRef = F50000000000000000000022 /* Supporters.json */; };
+		F50000000000000000000006 /* Supporters macOS App */ = {isa = PBXBuildFile; fileRef = F50000000000000000000022 /* Supporters.json */; };
+		F50000000000000000000007 /* AboutSupport macOS Tests */ = {isa = PBXBuildFile; fileRef = F50000000000000000000020 /* AboutSupport.swift */; };
+		F50000000000000000000008 /* AboutSupport iOS Tests */ = {isa = PBXBuildFile; fileRef = F50000000000000000000020 /* AboutSupport.swift */; };
+		F50000000000000000000009 /* AboutSupportTests macOS */ = {isa = PBXBuildFile; fileRef = F50000000000000000000023 /* AboutSupportTests.swift */; };
+		F5000000000000000000000A /* AboutSupportTests iOS */ = {isa = PBXBuildFile; fileRef = F50000000000000000000023 /* AboutSupportTests.swift */; };
+		F5000000000000000000000B /* Supporters macOS Tests */ = {isa = PBXBuildFile; fileRef = F50000000000000000000022 /* Supporters.json */; };
+		F5000000000000000000000C /* Supporters iOS Tests */ = {isa = PBXBuildFile; fileRef = F50000000000000000000022 /* Supporters.json */; };
 		F40000000000000000000001 /* Statistics iOS App */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
 		F40000000000000000000002 /* Statistics macOS App */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
 		F40000000000000000000003 /* Statistics iOS Extension */ = {isa = PBXBuildFile; fileRef = F40000000000000000000020 /* FilterStatistics.swift */; };
@@ -37,14 +49,6 @@
 		DCB37AD0273AB99E0015A605 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB37ACE273AB99E0015A605 /* Main.storyboard */; };
 		DCB37AD8273AB99E0015A605 /* Binnen-I be gone Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCB37AD7273AB99E0015A605 /* Binnen-I be gone Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DCB37AE2273AB99F0015A605 /* Binnen-I be gone Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DCB37AE1273AB99F0015A605 /* Binnen-I be gone Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DCB37AE8273AB99F0015A605 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAB273AB99B0015A605 /* Main.html */; };
-		DCB37AE9273AB99F0015A605 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAB273AB99B0015A605 /* Main.html */; };
-		DCB37AEA273AB99F0015A605 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAD273AB99B0015A605 /* Icon.png */; };
-		DCB37AEB273AB99F0015A605 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAD273AB99B0015A605 /* Icon.png */; };
-		DCB37AEC273AB99F0015A605 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAE273AB99B0015A605 /* Style.css */; };
-		DCB37AED273AB99F0015A605 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAE273AB99B0015A605 /* Style.css */; };
-		DCB37AEE273AB99F0015A605 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAF273AB99B0015A605 /* Script.js */; };
-		DCB37AEF273AB99F0015A605 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AAF273AB99B0015A605 /* Script.js */; };
 		DCB37AF0273AB99F0015A605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37AB0273AB99B0015A605 /* ViewController.swift */; };
 		DCB37AF1273AB99F0015A605 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB37AB0273AB99B0015A605 /* ViewController.swift */; };
 		DCB37AF2273AB99F0015A605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB37AB1273AB99E0015A605 /* Assets.xcassets */; };
@@ -127,6 +131,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F50000000000000000000020 /* AboutSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSupport.swift; sourceTree = "<group>"; };
+		F50000000000000000000021 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		F50000000000000000000022 /* Supporters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Supporters.json; sourceTree = "<group>"; };
+		F50000000000000000000023 /* AboutSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests/AboutSupportTests.swift; sourceTree = "<group>"; };
 		F40000000000000000000020 /* FilterStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shared (Statistics)/FilterStatistics.swift"; sourceTree = SOURCE_ROOT; };
 		F40000000000000000000021 /* StatisticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests/StatisticsTests.swift; sourceTree = "<group>"; };
 		F30000000000000000000020 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shared (Settings)/AppSettings.swift"; sourceTree = SOURCE_ROOT; };
@@ -134,15 +142,9 @@
 		F30000000000000000000022 /* SettingsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterEngineTests/SettingsStoreTests.swift; sourceTree = "<group>"; };
 		F30000000000000000000023 /* iOS App entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Binnen-I be gone.entitlements"; sourceTree = "<group>"; };
 		F30000000000000000000024 /* iOS Extension entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Binnen-I be gone.entitlements"; sourceTree = "<group>"; };
-		DC96764527861575001E5242 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = ../en.lproj/Main.html; sourceTree = "<group>"; };
 		DC967646278617A5001E5242 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		DC967647278617A5001E5242 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		DC967648278617A5001E5242 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		DC967649278617A5001E5242 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = ../de.lproj/Main.html; sourceTree = "<group>"; };
-		DCB37AAC273AB99B0015A605 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
-		DCB37AAD273AB99B0015A605 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		DCB37AAE273AB99B0015A605 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
-		DCB37AAF273AB99B0015A605 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
 		DCB37AB0273AB99B0015A605 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCB37AB1273AB99E0015A605 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCB37AB3273AB99E0015A605 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
@@ -236,12 +238,14 @@
 			);
 			sourceTree = "<group>";
 		};
-		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000016 /* DOMIntegrationTests.swift */, F30000000000000000000022 /* SettingsStoreTests.swift */, F40000000000000000000021 /* StatisticsTests.swift */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
+		F10000000000000000000010 /* Tests */ = { isa = PBXGroup; children = (F10000000000000000000011 /* FilterEngineTests.swift */, F10000000000000000000016 /* DOMIntegrationTests.swift */, F30000000000000000000022 /* SettingsStoreTests.swift */, F40000000000000000000021 /* StatisticsTests.swift */, F50000000000000000000023 /* AboutSupportTests.swift */, F10000000000000000000013 /* gender-cases.json */,); path = Tests; sourceTree = "<group>"; };
 		DCB37AA9273AB99B0015A605 /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
 				DCB37AB0273AB99B0015A605 /* ViewController.swift */,
 				F30000000000000000000021 /* SettingsView.swift */,
+				F50000000000000000000020 /* AboutSupport.swift */,
+				F50000000000000000000021 /* RootView.swift */,
 				DCB37AB1273AB99E0015A605 /* Assets.xcassets */,
 				DCB37AAA273AB99B0015A605 /* Resources */,
 			);
@@ -251,10 +255,7 @@
 		DCB37AAA273AB99B0015A605 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DCB37AAB273AB99B0015A605 /* Main.html */,
-				DCB37AAD273AB99B0015A605 /* Icon.png */,
-				DCB37AAE273AB99B0015A605 /* Style.css */,
-				DCB37AAF273AB99B0015A605 /* Script.js */,
+				F50000000000000000000022 /* Supporters.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -472,13 +473,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCB37AEA273AB99F0015A605 /* Icon.png in Resources */,
+				F50000000000000000000005 /* Supporters iOS App */,
 				DCB37AC1273AB99E0015A605 /* LaunchScreen.storyboard in Resources */,
-				DCB37AE8273AB99F0015A605 /* Main.html in Resources */,
-				DCB37AEE273AB99F0015A605 /* Script.js in Resources */,
 				DCB37AF2273AB99F0015A605 /* Assets.xcassets in Resources */,
 				DCB37AC4273AB99E0015A605 /* Main.storyboard in Resources */,
-				DCB37AEC273AB99F0015A605 /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,12 +484,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCB37AEB273AB99F0015A605 /* Icon.png in Resources */,
-				DCB37AED273AB99F0015A605 /* Style.css in Resources */,
+				F50000000000000000000006 /* Supporters macOS App */,
 				DCB37AD0273AB99E0015A605 /* Main.storyboard in Resources */,
-				DCB37AEF273AB99F0015A605 /* Script.js in Resources */,
 				DCB37AF3273AB99F0015A605 /* Assets.xcassets in Resources */,
-				DCB37AE9273AB99F0015A605 /* Main.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,8 +522,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F10000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000002 /* filter-engine.js in Resources */, F10000000000000000000003 /* gender-cases.json in Resources */, F10000000000000000000007 /* binnenibegone.js in Resources */,); runOnlyForDeploymentPostprocessing = 0; };
-		F20000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000003 /* filter-engine.js in Resources */, F20000000000000000000004 /* gender-cases.json in Resources */, F20000000000000000000005 /* binnenibegone.js in Resources */,); runOnlyForDeploymentPostprocessing = 0; };
+		F10000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000002 /* filter-engine.js in Resources */, F10000000000000000000003 /* gender-cases.json in Resources */, F10000000000000000000007 /* binnenibegone.js in Resources */, F5000000000000000000000B /* Supporters macOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
+		F20000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000003 /* filter-engine.js in Resources */, F20000000000000000000004 /* gender-cases.json in Resources */, F20000000000000000000005 /* binnenibegone.js in Resources */, F5000000000000000000000C /* Supporters iOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -539,6 +534,8 @@
 				DCB37AF0273AB99F0015A605 /* ViewController.swift in Sources */,
 				F30000000000000000000001 /* AppSettings iOS App */,
 				F30000000000000000000007 /* SettingsView iOS App */,
+				F50000000000000000000001 /* AboutSupport iOS App */,
+				F50000000000000000000003 /* RootView iOS App */,
 				F40000000000000000000001 /* Statistics iOS App */,
 				DCB37ABC273AB99E0015A605 /* AppDelegate.swift in Sources */,
 				DCB37ABE273AB99E0015A605 /* SceneDelegate.swift in Sources */,
@@ -552,6 +549,8 @@
 				DCB37AF1273AB99F0015A605 /* ViewController.swift in Sources */,
 				F30000000000000000000002 /* AppSettings macOS App */,
 				F30000000000000000000008 /* SettingsView macOS App */,
+				F50000000000000000000002 /* AboutSupport macOS App */,
+				F50000000000000000000004 /* RootView macOS App */,
 				F40000000000000000000002 /* Statistics macOS App */,
 				DCB37ACD273AB99E0015A605 /* AppDelegate.swift in Sources */,
 			);
@@ -577,8 +576,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */, F3000000000000000000000D /* SettingsView macOS Tests */, F40000000000000000000005 /* Statistics macOS Tests */, F40000000000000000000007 /* StatisticsTests macOS */,); runOnlyForDeploymentPostprocessing = 0; };
-		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */, F3000000000000000000000E /* SettingsView iOS Tests */, F40000000000000000000006 /* Statistics iOS Tests */, F40000000000000000000008 /* StatisticsTests iOS */,); runOnlyForDeploymentPostprocessing = 0; };
+		F10000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000001 /* FilterEngineTests.swift in Sources */, F10000000000000000000008 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000005 /* AppSettings macOS Tests */, F30000000000000000000009 /* SettingsStoreTests macOS */, F3000000000000000000000B /* Handler macOS Tests */, F3000000000000000000000D /* SettingsView macOS Tests */, F40000000000000000000005 /* Statistics macOS Tests */, F40000000000000000000007 /* StatisticsTests macOS */, F50000000000000000000007 /* AboutSupport macOS Tests */, F50000000000000000000009 /* AboutSupportTests macOS */,); runOnlyForDeploymentPostprocessing = 0; };
+		F20000000000000000000022 /* Sources */ = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000001 /* FilterEngineTests.swift in Sources */, F20000000000000000000002 /* DOMIntegrationTests.swift in Sources */, F30000000000000000000006 /* AppSettings iOS Tests */, F3000000000000000000000A /* SettingsStoreTests iOS */, F3000000000000000000000C /* Handler iOS Tests */, F3000000000000000000000E /* SettingsView iOS Tests */, F40000000000000000000006 /* Statistics iOS Tests */, F40000000000000000000008 /* StatisticsTests iOS */, F50000000000000000000008 /* AboutSupport iOS Tests */, F5000000000000000000000A /* AboutSupportTests iOS */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -596,16 +595,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DCB37AAB273AB99B0015A605 /* Main.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DCB37AAC273AB99B0015A605 /* Base */,
-				DC96764527861575001E5242 /* en */,
-				DC967649278617A5001E5242 /* de */,
-			);
-			name = Main.html;
-			sourceTree = "<group>";
-		};
 		DCB37ABF273AB99E0015A605 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

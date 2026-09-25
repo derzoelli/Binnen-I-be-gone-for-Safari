@@ -12,7 +12,7 @@ class ViewController: PlatformViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 #if os(iOS)
-        let hosting = UIHostingController(rootView: SettingsView())
+        let hosting = UIHostingController(rootView: RootView())
         addChild(hosting)
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hosting.view)
@@ -24,7 +24,7 @@ class ViewController: PlatformViewController {
         ])
         hosting.didMove(toParent: self)
 #elseif os(macOS)
-        let hosting = NSHostingView(rootView: SettingsView())
+        let hosting = NSHostingView(rootView: RootView())
         hosting.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(hosting)
         NSLayoutConstraint.activate([
