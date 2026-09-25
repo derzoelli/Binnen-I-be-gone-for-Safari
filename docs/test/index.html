@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Binnen-I be gone – Filter testen</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="generated/filter-engine.js" defer></script>
+  <script src="test.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><h1>Binnen-I be gone testen</h1><p>Zwei getrennte Prüfungen: die Filter-Engine und die installierte Safari-Erweiterung.</p></header>
+    <section aria-labelledby="engine-title">
+      <h2 id="engine-title">Engine Self-Test</h2>
+      <p>Diese Prüfung führt alle Fälle des gemeinsamen Testkorpus mit ihren jeweiligen Einstellungen aus. Sie benötigt keine installierte Erweiterung.</p>
+      <p id="engine-result" role="status">Tests werden geladen …</p>
+      <div id="engine-categories"></div>
+      <div id="engine-failures"></div>
+    </section>
+    <section aria-labelledby="live-title">
+      <h2 id="live-title">Safari Live-Test</h2>
+      <p>Die folgenden sichtbaren Texte kann die Safari-Erweiterung mit ihren normalen Standardeinstellungen direkt auf dieser Seite verändern. Anders als der Engine-Test hängt dieses Ergebnis von deinen Safari-Einstellungen ab.</p>
+      <ul id="live-examples">
+        <li class="live-example" data-input="Mitarbeiter*innen" data-expected="Mitarbeiter">Mitarbeiter*innen</li>
+        <li class="live-example" data-input="Nutzer:in" data-expected="Nutzer">Nutzer:in</li>
+        <li class="live-example" data-input="Kolleg_innen" data-expected="Kollegen">Kolleg_innen</li>
+        <li class="live-example" data-input="ÄrztInnen" data-expected="Ärzte">ÄrztInnen</li>
+        <li class="live-example" data-input="Bürgerinnen und Bürger" data-expected="Bürger">Bürgerinnen und Bürger</li>
+        <li class="live-example" data-input="Mit den Ärzt:innen wurde gesprochen." data-expected="Mit den Ärzten wurde gesprochen.">Mit den Ärzt:innen wurde gesprochen.</li>
+      </ul>
+      <button id="live-check" type="button">Erneut prüfen</button>
+      <p id="live-result" role="status">Warte auf die Safari-Erweiterung …</p>
+      <p class="hint">Falls keine Filterung erkannt wird: Ist die Safari-Erweiterung aktiviert? Ist die Filterung aktiv? Steht diese Seite auf der Blocklist? Im Modus „Bei Bedarf“ bitte zuerst das Toolbar-Icon anklicken.</p>
+    </section>
+  </main>
+</body>
+</html>
