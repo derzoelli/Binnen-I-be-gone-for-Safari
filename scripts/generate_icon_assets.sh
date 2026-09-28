@@ -16,6 +16,8 @@ for variant in on off oni offi; do
     done
 done
 
-# The iOS launch storyboard still references LargeIcon.
-rsvg-convert -w 128 -h 128 Design/AppIcon/extension.svg \
-    -o 'Shared (App)/Assets.xcassets/LargeIcon.imageset/icon128.png'
+# The iOS launch storyboard renders LargeIcon at 128 points; generate native Retina sizes.
+for size in 128 256 384; do
+    rsvg-convert -w "$size" -h "$size" Design/AppIcon/extension.svg \
+        -o "Shared (App)/Assets.xcassets/LargeIcon.imageset/icon${size}.png"
+done

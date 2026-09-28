@@ -93,7 +93,13 @@ def main():
     for variant in ("on", "off", "oni", "offi"):
         for size in SIZES:
             check_png(IMAGES / "toolbar" / f"{variant}-{size}.png", size, DESIGN / "Toolbar" / f"{variant}.svg")
-    assert (ASSETS / "LargeIcon.imageset/icon128.png").read_bytes() == (IMAGES / "icon128.png").read_bytes()
+    large_icon = ASSETS / "LargeIcon.imageset"
+    large_icon_contents = json.loads((large_icon / "Contents.json").read_text())
+    assert {
+        image["scale"]: image["filename"] for image in large_icon_contents["images"]
+    } == {"1x": "icon128.png", "2x": "icon256.png", "3x": "icon384.png"}
+    for size in (128, 256, 384):
+        check_png(large_icon / f"icon{size}.png", size, APP_ICONS / "extension.svg")
 
     check_composer_icon("AppIcon", ("01-background.svg", "02-letter.svg", "03-slash.svg"))
     check_composer_icon("AppIconBeta", ("01-background.svg", "02-letter.svg", "03-slash-beta.svg", "04-beta-marker.svg"))
@@ -101,7 +107,7 @@ def main():
     assert not (ROOT / "Shared (Extension)/Resources/META-INF").exists()
     assert not list(IMAGES.glob("iconOn*.png")) and not list(IMAGES.glob("iconOff*.png"))
     check_project()
-    print("Icon assets: 22 PNG sizes, both Icon Composer variants, manifest and Xcode configurations OK")
+    print("Icon assets: 25 PNG sizes, both Icon Composer variants, manifest and Xcode configurations OK")
 
 
 if __name__ == "__main__":
