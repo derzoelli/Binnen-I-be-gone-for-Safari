@@ -5,6 +5,8 @@ set -eu
 cmp 'Tests/Fixtures/gender-cases.json' docs/test/generated/gender-cases.json
 cmp 'Shared (Extension)/Resources/filter-engine.js' docs/test/generated/filter-engine.js
 
+python3 scripts/icon_assets_test.py
+
 # Shared JavaScriptCore fixture assertions (same corpus as the Xcode test target).
 osascript -l JavaScript scripts/regex_sanity_test.js
 osascript -l JavaScript scripts/settings_broker_test.js
