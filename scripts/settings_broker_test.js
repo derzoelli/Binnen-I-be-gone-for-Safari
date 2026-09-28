@@ -50,6 +50,8 @@ function assert(condition, message) { if (!condition) throw new Error(message); 
 eval(read(root + "/Shared (Extension)/Resources/background.js"));
 assert(nativeCalls.length === 1 && nativeCalls[0].legacySettings.allowlist === "legacy.example", "legacy migration payload");
 assert(legacy.blocklist === "private.example", "legacy blocklist preserved");
+assert(icons[icons.length - 1].path[16] === "images/toolbar/off-16.png" &&
+    icons[icons.length - 1].path[38] === "images/toolbar/off-38.png", "inactive toolbar sizes");
 
 var response;
 listener({type: "getSettings"}, {}, function (value) { response = value; });
@@ -57,12 +59,20 @@ assert(response.settings.allowlist === "legacy.example", "getSettings response")
 nativeStore.aktiv = true; // Simulate a setting changed in the native app.
 listener({type: "getSettings"}, {}, function (value) { response = value; });
 assert(response.settings.aktiv === true && legacy.aktiv === true, "native changes refresh the cache");
+assert(icons[icons.length - 1].path[32] === "images/toolbar/on-32.png", "active toolbar icon");
 
 listener({type: "setSettings", settings: {filterliste: "Bei Bedarf", allowlist: "new.example"}}, {}, function (value) { response = value; });
 assert(response.settings.allowlist === "new.example" && nativeStore.allowlist === "new.example", "options write reaches native store");
 click();
 assert(messages.length === 1 && messages[0].message.type === "ondemand", "toolbar on-demand message");
 assert(icons[icons.length - 1].tabId === 42, "on-demand icon is tab-scoped");
+assert(icons[icons.length - 1].path[19] === "images/toolbar/on-19.png", "on-demand icon size");
+
+listener({type: "setSettings", settings: {invertiert: true}}, {}, function () {});
+assert(icons[icons.length - 1].path[38] === "images/toolbar/offi-38.png", "inverted off icon");
+click();
+assert(icons[icons.length - 1].path[16] === "images/toolbar/oni-16.png" &&
+    icons[icons.length - 1].tabId === 42, "inverted on-demand icon");
 
 listener({type: "setSettings", settings: {filterliste: "Blocklist", aktiv: true}}, {}, function () {});
 click();

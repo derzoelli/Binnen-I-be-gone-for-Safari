@@ -6,6 +6,13 @@
     var action = chrome.runtime.getManifest().manifest_version === 3 ? chrome.action : chrome.browserAction;
     var currentSettings = null;
 
+    function iconPaths(enabled, inverted) {
+        var name = (enabled ? "on" : "off") + (inverted ? "i" : "");
+        var base = "images/toolbar/" + name + "-";
+        return { 16: base + "16.png", 19: base + "19.png",
+                 32: base + "32.png", 38: base + "38.png" };
+    }
+
     function storageGet(callback) { chrome.storage.sync.get(callback); }
     function storageSet(settings, callback) {
         chrome.storage.sync.set(settings, function () { if (callback) callback(); });
@@ -70,8 +77,7 @@
     function updateIcon(settings) {
         if (!settings || !action) return;
         var enabled = settings.aktiv === true && settings.filterliste !== "Bei Bedarf";
-        var suffix = settings.invertiert === true ? "i" : "";
-        action.setIcon({ path: "images/icon" + (enabled ? "On" : "Off") + suffix + ".png" });
+        action.setIcon({ path: iconPaths(enabled, settings.invertiert === true) });
         action.setTitle({ title: settings.filterliste === "Bei Bedarf" ?
             "Klick filtert Binnen-Is auf dieser Seite" :
             (enabled ? "Filterung aktiv" : "Filterung deaktiviert") });
@@ -90,7 +96,7 @@
         getSettings(function (settings) {
             if (settings.filterliste === "Bei Bedarf") {
                 sendToActiveTab({ type: "ondemand" }, function (tabID) {
-                    action.setIcon({ path: "images/iconOn" + (settings.invertiert ? "i" : "") + ".png", tabId: tabID });
+                    action.setIcon({ path: iconPaths(true, settings.invertiert === true), tabId: tabID });
                 });
             } else {
                 setSettings({ aktiv: !settings.aktiv }, function () {

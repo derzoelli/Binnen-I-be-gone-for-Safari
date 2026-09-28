@@ -4,7 +4,12 @@
        "persistent": false
   },
   "browser_action": {
-    "default_icon": "images/iconOn.png",
+    "default_icon": {
+      "16": "images/toolbar/on-16.png",
+      "19": "images/toolbar/on-19.png",
+      "32": "images/toolbar/on-32.png",
+      "38": "images/toolbar/on-38.png"
+    },
     "default_title": "Filterung aktiv",
     "browser_style": true
   },
@@ -22,8 +27,12 @@
   ],
   "description": "Entfernt die g\u00e4ngigsten Sorten von Binnen-Is auf besuchten deutschsprachigen Webseiten.",
   "icons": {
+    "48": "images/icon48.png",
+    "64": "images/icon64.png",
+    "96": "images/icon96.png",
     "128": "images/icon128.png",
-    "48": "images/icon48.png"
+    "256": "images/icon256.png",
+    "512": "images/icon512.png"
   },
   "manifest_version": 2,
   "name": "Binnen-I be gone",
