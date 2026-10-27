@@ -35,6 +35,10 @@
     "512": "images/icon512.png"
   },
   "manifest_version": 2,
+  "icon_variants": [
+    { "any": "images/icon.svg", "color_schemes": ["light"] },
+    { "any": "images/icon-dark.svg", "color_schemes": ["dark"] }
+  ],
   "name": "Binnen-I be gone",
   "options_ui": {
     "page": "options.html",

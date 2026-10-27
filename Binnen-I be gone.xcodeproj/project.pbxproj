@@ -63,14 +63,12 @@
 		DCB37B10273AB9A00015A605 /* css in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B08273AB9A00015A605 /* css */; };
 		DCB37B11273AB9A00015A605 /* images in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B09273AB9A00015A605 /* images */; };
 		DCB37B12273AB9A00015A605 /* options.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0A273AB9A00015A605 /* options.js */; };
-		DCB37B14273AB9A00015A605 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0C273AB9A00015A605 /* manifest.json */; };
 		DCB37B15273AB9A00015A605 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0D273AB9A00015A605 /* options.html */; };
 		DCB37B16273AB9A00015A605 /* binnenibegone.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0E273AB9A00015A605 /* binnenibegone.js */; };
 		DCB37B17273AB9A00015A605 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B07273AB9A00015A605 /* background.js */; };
 		DCB37B18273AB9A00015A605 /* css in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B08273AB9A00015A605 /* css */; };
 		DCB37B19273AB9A00015A605 /* images in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B09273AB9A00015A605 /* images */; };
 		DCB37B1A273AB9A00015A605 /* options.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0A273AB9A00015A605 /* options.js */; };
-		DCB37B1C273AB9A00015A605 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0C273AB9A00015A605 /* manifest.json */; };
 		DCB37B1D273AB9A00015A605 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0D273AB9A00015A605 /* options.html */; };
 		DCB37B1E273AB9A00015A605 /* binnenibegone.js in Resources */ = {isa = PBXBuildFile; fileRef = DCB37B0E273AB9A00015A605 /* binnenibegone.js */; };
 		F10000000000000000000005 /* filter-engine.js in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000012 /* filter-engine.js */; };
@@ -393,6 +391,7 @@
 				DCB37AD3273AB99E0015A605 /* Sources */,
 				DCB37AD4273AB99E0015A605 /* Frameworks */,
 				DCB37AD5273AB99E0015A605 /* Resources */,
+				F70000000000000000000001 /* Select Safari icons */,
 			);
 			buildRules = (
 			);
@@ -410,6 +409,7 @@
 				DCB37ADD273AB99F0015A605 /* Sources */,
 				DCB37ADE273AB99F0015A605 /* Frameworks */,
 				DCB37ADF273AB99F0015A605 /* Resources */,
+				F70000000000000000000002 /* Select Safari icons */,
 			);
 			buildRules = (
 			);
@@ -506,7 +506,6 @@
 				DCB37B19273AB9A00015A605 /* images in Resources */,
 				DCB37B1A273AB9A00015A605 /* options.js in Resources */,
 				DCB37B18273AB9A00015A605 /* css in Resources */,
-				DCB37B1C273AB9A00015A605 /* manifest.json in Resources */,
 				DCB37B1E273AB9A00015A605 /* binnenibegone.js in Resources */,
 				DCB37B17273AB9A00015A605 /* background.js in Resources */,
 				F10000000000000000000006 /* filter-engine.js in Resources */,
@@ -521,7 +520,6 @@
 				DCB37B11273AB9A00015A605 /* images in Resources */,
 				DCB37B12273AB9A00015A605 /* options.js in Resources */,
 				DCB37B10273AB9A00015A605 /* css in Resources */,
-				DCB37B14273AB9A00015A605 /* manifest.json in Resources */,
 				DCB37B16273AB9A00015A605 /* binnenibegone.js in Resources */,
 				DCB37B0F273AB9A00015A605 /* background.js in Resources */,
 				F10000000000000000000005 /* filter-engine.js in Resources */,
@@ -531,6 +529,31 @@
 		F10000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F10000000000000000000002 /* filter-engine.js in Resources */, F10000000000000000000003 /* gender-cases.json in Resources */, F10000000000000000000007 /* binnenibegone.js in Resources */, F5000000000000000000000B /* Supporters macOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
 		F20000000000000000000023 /* Resources */ = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (F20000000000000000000003 /* filter-engine.js in Resources */, F20000000000000000000004 /* gender-cases.json in Resources */, F20000000000000000000005 /* binnenibegone.js in Resources */, F5000000000000000000000C /* Supporters iOS Tests */,); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F70000000000000000000001 /* Select Safari icons */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			inputPaths = ("$(SRCROOT)/scripts/prepare_extension_manifest.py", "$(SRCROOT)/Shared (Extension)/Resources/manifest.json",);
+			name = "Select Safari icons";
+			outputPaths = ("$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/manifest.json",);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/python3 \"$SRCROOT/scripts/prepare_extension_manifest.py\"\n";
+		};
+		F70000000000000000000002 /* Select Safari icons */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			inputPaths = ("$(SRCROOT)/scripts/prepare_extension_manifest.py", "$(SRCROOT)/Shared (Extension)/Resources/manifest.json",);
+			name = "Select Safari icons";
+			outputPaths = ("$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/manifest.json",);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/python3 \"$SRCROOT/scripts/prepare_extension_manifest.py\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DCB37AB4273AB99E0015A605 /* Sources */ = {

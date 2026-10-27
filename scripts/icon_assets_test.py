@@ -5,8 +5,14 @@ import json
 import shutil
 import struct
 import subprocess
+import sys
+import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
+sys.dont_write_bytecode = True
+from generate_safari_icons import artwork
+from prepare_extension_manifest import manifest_for_configuration
 
 ROOT = Path(__file__).resolve().parents[1]
 DESIGN = ROOT / "Design"
@@ -95,6 +101,60 @@ def check_project():
         }
         assert expected_icons <= resource_paths, (platform, resource_paths)
     assert not any(path == "Resources/META-INF" for path in file_refs.values())
+    for platform in ("iOS", "macOS"):
+        target = next(obj for obj in objects.values() if obj.get("isa") == "PBXNativeTarget"
+                      and obj.get("name") == f"Binnen-I be gone Extension ({platform})")
+        phases = [objects[ref] for ref in target["buildPhases"]]
+        scripts = [phase for phase in phases if phase["isa"] == "PBXShellScriptBuildPhase"]
+        assert len(scripts) == 1 and "prepare_extension_manifest.py" in scripts[0]["shellScript"]
+        assert scripts[0]["outputPaths"] == ["$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/manifest.json"]
+        resource_paths = {file_refs.get(objects[build]["fileRef"])
+                          for phase in phases if phase["isa"] == "PBXResourcesBuildPhase"
+                          for build in phase["files"]}
+        assert "Resources/images" in resource_paths
+        assert "Resources/manifest.json" not in resource_paths, "Duplicate manifest producer"
+
+
+def check_safari_icons(manifest):
+    for path, expected in artwork().items():
+        assert path.read_text() == expected, f"Regenerate stale vector: {path}"
+        root = ET.parse(path).getroot()
+        assert not root.findall(".//{*}image"), f"SVG must be self-contained: {path}"
+        assert not root.findall(".//{*}text"), f"No font dependency: {path}"
+
+    for variant in ("on", "off", "oni", "offi"):
+        root = ET.parse(DESIGN / "Toolbar" / f"{variant}.svg").getroot()
+        assert not root.findall(".//{*}linearGradient") and not root.findall(".//{*}filter")
+        assert root.get("viewBox") == "128 128 768 768", "Retain small-size optical bounds"
+        # Pure monochrome, transparent canvas. Negative space separates I/ribbon,
+        # so both remain distinguishable even when Safari applies one tint.
+        paths = root.findall("{*}path")
+        assert len(paths) == (2 if variant.startswith("on") else 1)
+        assert {path.get("fill") for path in paths} == ({"#FFFFFF"} if variant.endswith("i") else {"#000000"})
+        assert not root.findall("{*}rect"), "No toolbar tile background"
+
+    assert manifest["icon_variants"] == [
+        {"any": "images/icon.svg", "color_schemes": ["light"]},
+        {"any": "images/icon-dark.svg", "color_schemes": ["dark"]},
+    ]
+    for configuration in ("Debug", "Beta", "Release"):
+        selected = manifest_for_configuration(manifest, configuration)
+        assert selected["browser_action"] == manifest["browser_action"], "Toolbar selection must remain unchanged"
+        non_icons = lambda value: {key: item for key, item in value.items() if key not in ("icons", "icon_variants")}
+        assert non_icons(selected) == non_icons(manifest), "Only visual manifest fields may change"
+        prefix = "images/" if configuration == "Release" else "images/beta/"
+        assert selected["icons"] == {str(size): f"{prefix}icon{size}.png" for size in EXTENSION_SIZES}
+        assert [variant["any"] for variant in selected["icon_variants"]] == [prefix + "icon.svg", prefix + "icon-dark.svg"]
+        for path in list(selected["icons"].values()) + [variant["any"] for variant in selected["icon_variants"]]:
+            assert (MANIFEST.parent / path).is_file(), path
+    # Exercise the real build entry point and guard configuration switching.
+    with tempfile.TemporaryDirectory() as directory:
+        import os
+        for configuration in ("Debug", "Release", "Beta", "Release"):
+            subprocess.run(["/usr/bin/python3", str(ROOT / "scripts/prepare_extension_manifest.py")], check=True,
+                           env={**os.environ, "SRCROOT": str(ROOT), "TARGET_BUILD_DIR": directory,
+                                "UNLOCALIZED_RESOURCES_FOLDER_PATH": "Resources", "CONFIGURATION": configuration})
+            assert json.loads((Path(directory) / "Resources/manifest.json").read_text()) == manifest_for_configuration(manifest, configuration)
 
 
 def main():
@@ -108,7 +168,8 @@ def main():
     }
 
     for size in EXTENSION_SIZES:
-        check_png(IMAGES / f"icon{size}.png", size, APP_ICONS / "extension.svg")
+        check_png(IMAGES / f"icon{size}.png", size, IMAGES / "icon.svg")
+        check_png(IMAGES / "beta" / f"icon{size}.png", size, IMAGES / "beta/icon.svg")
     for variant in ("on", "off", "oni", "offi"):
         for size in SIZES:
             check_png(IMAGES / "toolbar" / f"{variant}-{size}.png", size, DESIGN / "Toolbar" / f"{variant}.svg")
@@ -126,7 +187,8 @@ def main():
     assert not (ROOT / "Shared (Extension)/Resources/META-INF").exists()
     assert not list(IMAGES.glob("iconOn*.png")) and not list(IMAGES.glob("iconOff*.png"))
     check_project()
-    print("Icon assets: 25 PNG sizes, both Icon Composer variants, manifest and Xcode configurations OK")
+    check_safari_icons(manifest)
+    print("Icon assets: 31 PNG sizes, four Safari SVG appearances, monochrome toolbar, Composer and build selection OK")
 
 
 if __name__ == "__main__":
