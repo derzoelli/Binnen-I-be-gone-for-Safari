@@ -74,34 +74,27 @@ struct AboutView: View {
     private let supporters = SupporterCatalog.load()
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section("Binnen-I be gone") {
-                    Text("Version \(version.version)")
-                    Text("Build \(version.build)")
-                }
-                Section("Links & Support") {
-                    Link("GitHub", destination: AppLinks.github)
-                    Link("App Store", destination: AppLinks.appStore)
-                    Link("TestFlight", destination: AppLinks.testFlight)
-                }
-                Section("Datenschutz") {
-                    Text("Binnen-I be gone enthält keine Tracker und überträgt keine Browser- oder Nutzungsdaten an externe Server.")
-                    Text("Die Statistik wird ausschließlich lokal gespeichert und enthält nur aggregierte Zähler.")
-                }
-                Section("Open Source") {
-                    Text("Das Projekt ist Open Source und steht unter der GPL-3.0-Lizenz.")
-                    Text("Die Safari-Version basiert ursprünglich auf der Arbeit an der Chrome- und Firefox-Version.")
-                    Link("Quellcode ansehen", destination: AppLinks.github)
-                    Link("Lizenz ansehen", destination: AppLinks.license)
-                }
-                Section("Unterstützer") { SupporterView(supporters: supporters) }
+        AppForm("Über & Support") {
+            Section("Binnen-I be gone") {
+                Text("Version \(version.version)")
+                Text("Build \(version.build)")
             }
-            .navigationTitle("Über & Support")
-            .frame(minWidth: 350, idealWidth: 580)
+            Section("Links & Support") {
+                Link("GitHub", destination: AppLinks.github)
+                Link("App Store", destination: AppLinks.appStore)
+                Link("TestFlight", destination: AppLinks.testFlight)
+            }
+            Section("Datenschutz") {
+                Text("Binnen-I be gone enthält keine Tracker und überträgt keine Browser- oder Nutzungsdaten an externe Server.")
+                Text("Die Statistik wird ausschließlich lokal gespeichert und enthält nur aggregierte Zähler.")
+            }
+            Section("Open Source") {
+                Text("Das Projekt ist Open Source und steht unter der GPL-3.0-Lizenz.")
+                Text("Die Safari-Version basiert ursprünglich auf der Arbeit an der Chrome- und Firefox-Version.")
+                Link("Quellcode ansehen", destination: AppLinks.github)
+                Link("Lizenz ansehen", destination: AppLinks.license)
+            }
+            Section("Unterstützer") { SupporterView(supporters: supporters) }
         }
-#if os(iOS)
-        .navigationViewStyle(.stack)
-#endif
     }
 }
