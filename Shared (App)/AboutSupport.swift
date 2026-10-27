@@ -49,7 +49,7 @@ enum AppLinks {
     static let license = URL(string: "https://github.com/derzoelli/Binnen-I-be-gone-for-Safari/blob/development/LICENSE")!
     static let appStore = URL(string: "https://apps.apple.com/de/app/binnen-i-be-gone/id1591455415")!
     static let testFlight = URL(string: "https://testflight.apple.com/join/CVIYsv2P")!
-    static let payPal = URL(string: "https://www.paypal.me/robinzoellner")!
+    static let support = URL(string: "https://github.com/derzoelli/Binnen-I-be-gone-for-Safari#support")!
     static let testPage = URL(string: "https://derzoelli.github.io/Binnen-I-be-gone-for-Safari/test/")!
 }
 
@@ -65,7 +65,7 @@ struct SupporterView: View {
                 else { Text(supporter.name) }
             }
         }
-        Link("Projekt unterstützen", destination: AppLinks.payPal)
+        Link("Projekt & Support", destination: AppLinks.support)
     }
 }
 
