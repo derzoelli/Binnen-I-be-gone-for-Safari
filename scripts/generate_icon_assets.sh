@@ -4,9 +4,13 @@ set -eu
 # Run from the repository root. Source SVGs in Design/ are the editable artwork.
 command -v rsvg-convert >/dev/null || { echo "rsvg-convert is required to regenerate PNG assets" >&2; exit 1; }
 
+python3 scripts/generate_safari_icons.py
+
 for size in 48 64 96 128 256 512; do
-    rsvg-convert -w "$size" -h "$size" Design/AppIcon/extension.svg \
+    rsvg-convert -w "$size" -h "$size" 'Shared (Extension)/Resources/images/icon.svg' \
         -o "Shared (Extension)/Resources/images/icon${size}.png"
+    rsvg-convert -w "$size" -h "$size" 'Shared (Extension)/Resources/images/beta/icon.svg' \
+        -o "Shared (Extension)/Resources/images/beta/icon${size}.png"
 done
 
 for variant in on off oni offi; do
