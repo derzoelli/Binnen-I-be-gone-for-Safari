@@ -42,6 +42,13 @@ def check_composer_icon(name, expected_layers):
     found = {layer["image-name"] for layer in layers}
     assert found == set(expected_layers), f"Unexpected {name} layers: {found}"
     assert len(layers) == len(expected_layers), f"Duplicate {name} layers"
+    glass_group = next(group for group in document["groups"]
+                       if any(layer["image-name"] == "03-glass-slash.svg" for layer in group["layers"]))
+    assert len(glass_group["layers"]) == 1, f"{name} ribbon needs its own material group"
+    assert glass_group["refractivity"]["enabled"] and glass_group["refractivity"]["depth"] > 0, (
+        f"{name} ribbon must retain native refraction"
+    )
+    assert "refractivity" in document["features"], f"{name} missing native glass feature"
     assert {asset.name for asset in (icon / "Assets").iterdir()
             if asset.is_file() and not asset.name.startswith(".")} == found, f"Unused {name} assets"
     for filename in expected_layers:

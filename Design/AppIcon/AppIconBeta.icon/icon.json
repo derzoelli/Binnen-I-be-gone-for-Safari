@@ -1,4 +1,8 @@
 {
+  "features": [
+    "refractivity",
+    "specular-location"
+  ],
   "fill-specializations": [
     {
       "value": {
@@ -14,25 +18,57 @@
   ],
   "groups": [
     {
+      "name": "Glass ribbon",
       "layers": [
         {
           "image-name": "03-glass-slash.svg",
           "name": "04-glass-slash"
-        },
+        }
+      ],
+      "blur-material": 0.035,
+      "refractivity": {
+        "enabled": true,
+        "strength": 0.32,
+        "depth": 0.08
+      },
+      "specular": "outside",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.3
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.58
+      }
+    },
+    {
+      "name": "Blueprint I",
+      "layers": [
         {
-          "image-name": "03-beta-letter.svg",
-          "name": "03-beta-letter",
-          "glass": false
-        },
-        {
-          "image-name": "02-beta-grid.svg",
-          "name": "02-beta-grid",
-          "glass": false
-        },
-        {
-          "image-name": "01-beta-background.svg",
-          "name": "01-beta-background",
           "glass": false,
+          "image-name": "03-beta-letter.svg",
+          "name": "03-beta-letter"
+        }
+      ],
+      "specular": "off",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
+    },
+    {
+      "name": "Material base",
+      "layers": [
+        {
+          "glass": false,
+          "image-name": "02-beta-grid.svg",
+          "name": "02-beta-grid"
+        },
+        {
           "fill-specializations": [
             {
               "appearance": "dark",
@@ -40,16 +76,19 @@
                 "automatic-gradient": "extended-srgb:0.01500,0.08000,0.23000,1.00000"
               }
             }
-          ]
+          ],
+          "glass": false,
+          "image-name": "01-beta-background.svg",
+          "name": "01-beta-background"
         }
       ],
       "shadow": {
         "kind": "neutral",
-        "opacity": 0.28
+        "opacity": 0
       },
       "translucency": {
-        "enabled": true,
-        "value": 0.16
+        "enabled": false,
+        "value": 0
       }
     }
   ],

@@ -1,58 +1,97 @@
 {
-  "fill-specializations" : [
+  "fill-specializations": [
     {
-      "value" : "system-light"
+      "value": "system-light"
     },
     {
-      "appearance" : "dark",
-      "value" : "system-dark"
+      "appearance": "dark",
+      "value": "system-dark"
     }
   ],
-  "groups" : [
+  "groups": [
     {
-      "layers" : [
+      "name": "Glass ribbon",
+      "layers": [
         {
-          "image-name" : "03-glass-slash.svg",
-          "name" : "03-glass-slash"
-        },
+          "image-name": "03-glass-slash.svg",
+          "name": "03-glass-slash"
+        }
+      ],
+      "blur-material": 0.035,
+      "refractivity": {
+        "enabled": true,
+        "strength": 0.32,
+        "depth": 0.08
+      },
+      "specular": "outside",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.3
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.58
+      }
+    },
+    {
+      "name": "Serif I",
+      "layers": [
         {
-          "fill-specializations" : [
+          "fill-specializations": [
             {
-              "appearance" : "dark",
-              "value" : "system-light"
+              "appearance": "dark",
+              "value": "system-light"
             }
           ],
-          "image-name" : "02-letter.svg",
-          "name" : "02-letter"
-        },
+          "image-name": "02-letter.svg",
+          "name": "02-letter"
+        }
+      ],
+      "specular": "inside",
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.36
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0
+      }
+    },
+    {
+      "name": "Material base",
+      "layers": [
         {
-          "fill-specializations" : [
+          "fill-specializations": [
             {
-              "appearance" : "dark",
-              "value" : {
-                "automatic-gradient" : "extended-srgb:0.05500,0.08500,0.12500,1.00000"
+              "appearance": "dark",
+              "value": {
+                "automatic-gradient": "extended-srgb:0.05500,0.08500,0.12500,1.00000"
               }
             }
           ],
-          "glass" : false,
-          "image-name" : "01-background.svg",
-          "name" : "01-background"
+          "glass": false,
+          "image-name": "01-background.svg",
+          "name": "01-background"
         }
       ],
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.28
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0
       },
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.16
+      "translucency": {
+        "enabled": false,
+        "value": 0
       }
     }
   ],
-  "supported-platforms" : {
-    "circles" : [
+  "supported-platforms": {
+    "circles": [
       "watchOS"
     ],
-    "squares" : "shared"
-  }
+    "squares": "shared"
+  },
+  "features": [
+    "refractivity",
+    "specular-location"
+  ]
 }
