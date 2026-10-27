@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="blueprint" x1="0" y1="0" x2=".8" y2="1">
+      <stop stop-color="#008CFF"/>
+      <stop offset=".42" stop-color="#0066EF"/>
+      <stop offset="1" stop-color="#063C9B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#blueprint)"/>
+</svg>

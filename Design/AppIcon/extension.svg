@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="1024" viewBox="0 0 1024 1024">
   <image href="01-background.svg" xlink:href="01-background.svg" width="1024" height="1024"/>
   <image href="02-letter.svg" xlink:href="02-letter.svg" width="1024" height="1024"/>
-  <image href="03-slash.svg" xlink:href="03-slash.svg" width="1024" height="1024"/>
+  <path d="M176 798C195 684 288 616 417 537L682 374C752 331 806 279 854 219C839 333 787 400 670 474L397 646C298 708 229 752 176 798Z"
+        fill="#C3DCEC" fill-opacity=".85" stroke="#7194B1" stroke-width="10"/>
+  <path d="M185 783C245 686 344 624 467 549L709 399C772 360 819 294 849 228"
+        fill="none" stroke="#FFFFFF" stroke-opacity=".9" stroke-width="9"/>
 </svg>

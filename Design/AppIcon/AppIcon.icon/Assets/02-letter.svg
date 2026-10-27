@@ -1,3 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <path fill="#142235" d="M300 206H724V280H626V744H724V818H300V744H398V280H300Z"/>
+  <defs>
+    <linearGradient id="ink" x1="0" y1="0" x2=".8" y2="1">
+      <stop stop-color="#26313A"/>
+      <stop offset=".3" stop-color="#080D12"/>
+      <stop offset=".72" stop-color="#131C24"/>
+      <stop offset="1" stop-color="#28343D"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#ink)" d="M324 180H700Q708 180 708 188V200Q708 210 698 212C625 222 604 253 604 316V710C604 773 625 804 698 814Q708 816 708 826V838Q708 846 700 846H324Q316 846 316 838V826Q316 816 326 814C399 804 420 773 420 710V316C420 253 399 222 326 212Q316 210 316 200V188Q316 180 324 180Z"/>
 </svg>
