@@ -58,6 +58,36 @@ final class StatisticsModel: ObservableObject {
     }
 }
 
+/// Keep the iOS navigation presentation, but never create a split view on macOS.
+struct AppForm<Content: View>: View {
+    let title: String
+    private let content: Content
+
+    init(_ title: String, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+
+    var body: some View {
+#if os(macOS)
+        ScrollView {
+            Form { content }
+                .frame(maxWidth: 620, alignment: .leading)
+                .padding(24)
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+#else
+        NavigationView {
+            Form { content }
+                .navigationTitle(title)
+                .frame(minWidth: 350, idealWidth: 580)
+        }
+        .navigationViewStyle(.stack)
+#endif
+    }
+}
+
 struct SettingsView: View {
     @StateObject private var model = SettingsModel()
     @StateObject private var statisticsModel = StatisticsModel()
@@ -83,89 +113,99 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        NavigationView {
-            Form {
-                Section("Safari-Erweiterung") {
-                    Label("Binnen-I be gone für Safari", systemImage: "safari")
-                    if !model.isReady {
-                        Text("Öffne Safari mit aktivierter Erweiterung einmal, damit bestehende Einstellungen sicher übernommen werden. Danach die App erneut öffnen.")
-                            .foregroundColor(.secondary)
-                    }
+        AppForm("Binnen-I be gone") {
+            Section("Safari-Erweiterung") {
+                Label("Binnen-I be gone für Safari", systemImage: "safari")
+                if !model.isReady {
+                    Text("Öffne Safari mit aktivierter Erweiterung einmal, damit bestehende Einstellungen sicher übernommen werden. Danach die App erneut öffnen.")
+                        .foregroundColor(.secondary)
+                }
 #if os(macOS)
-                    if let extensionEnabled = extensionEnabled {
-                        Label(extensionEnabled ? "Erweiterung aktiviert" : "Erweiterung deaktiviert",
-                              systemImage: extensionEnabled ? "checkmark.circle.fill" : "exclamationmark.circle")
-                    } else {
-                        Text("Status der Erweiterung nicht verfügbar")
-                            .foregroundColor(.secondary)
-                    }
-                    Button("Safari-Erweiterungseinstellungen öffnen") {
-                        SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.robinzoellner.Binnen-I-be-gone.Extension") { _ in }
-                    }
+                if let extensionEnabled = extensionEnabled {
+                    Label(extensionEnabled ? "Erweiterung aktiviert" : "Erweiterung deaktiviert",
+                          systemImage: extensionEnabled ? "checkmark.circle.fill" : "exclamationmark.circle")
+                } else {
+                    Text("Status der Erweiterung nicht verfügbar")
+                        .foregroundColor(.secondary)
+                }
+                Button("Safari-Erweiterungseinstellungen öffnen") {
+                    SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.robinzoellner.Binnen-I-be-gone.Extension") { _ in }
+                }
 #else
-                    Text("Aktiviere die Erweiterung in Safari unter Einstellungen → Erweiterungen.")
-                        .foregroundColor(.secondary)
+                Text("Aktiviere die Erweiterung in Safari unter Einstellungen → Erweiterungen.")
+                    .foregroundColor(.secondary)
 #endif
-                }
-                Section("Statistik") {
-                    HStack {
-                        Text("Gefilterte Ausdrücke")
-                        Spacer()
-                        Text(statisticsModel.statistics.total.formatted()).font(.headline)
-                    }
-                    HStack { Text("Binnen-I-Formen"); Spacer(); Text(statisticsModel.statistics.genderForms.formatted()) }
-                    HStack { Text("Doppelformen"); Spacer(); Text(statisticsModel.statistics.doubleForms.formatted()) }
-                    HStack { Text("Partizipformen"); Spacer(); Text(statisticsModel.statistics.participles.formatted()) }
-                    Text("Seit \(statisticsModel.statistics.resetDate.formatted(date: .abbreviated, time: .shortened))")
-                        .foregroundColor(.secondary)
-                    Button("Statistik zurücksetzen", role: .destructive) { confirmsStatisticsReset = true }
-                        .disabled(!statisticsModel.isAvailable)
-                }
-                Section("Filterung") {
-                    Toggle("Filterung aktiv", isOn: activeBinding)
-                        .disabled(!model.canEditActive)
-                    Toggle("Doppelformen ersetzen", isOn: binding(\.replacesDoubleForms))
-                    Toggle(isOn: binding(\.replacesParticiples)) {
-                        HStack { Text("Partizipformen ersetzen"); Text("Beta").font(.caption).foregroundColor(.secondary) }
-                    }
-                }.disabled(!model.isReady)
-                Section("Anzeige") {
-                    Toggle("Zähler im Toolbar-Icon", isOn: binding(\.showsCounter))
-                    Toggle("Alternatives dunkles Toolbar-Icon", isOn: binding(\.usesDarkIcon))
-                }.disabled(!model.isReady)
-                Section("Filtermodus") {
-                    Picker("Auf welchen Seiten filtern?", selection: filterModeBinding) {
-                        Text("Überall").tag("Keine")
-                        Text("Außer Blocklist").tag("Blocklist")
-                        Text("Nur Allowlist").tag("Allowlist")
-                        Text("Nur bei Bedarf").tag("Bei Bedarf")
-                    }
-                    Toggle("Seiten zum Thema „Binnen-I“ aussetzen", isOn: binding(\.skipsTopicPages))
-                        .disabled(model.settings.filterMode == "Bei Bedarf")
-                }.disabled(!model.isReady)
-                Section(header: Text("Blocklist"), footer: Text("Eine Domain pro Zeile. Auf diesen Seiten wird nicht gefiltert.")) {
-                    TextEditor(text: binding(\.blocklist))
-                        .frame(minHeight: 110)
-                        .accessibilityLabel("Blocklist")
-                }.disabled(!model.isReady)
-                Section(header: Text("Allowlist"), footer: Text("Eine Domain pro Zeile. Nur auf diesen Seiten wird gefiltert, wenn Allowlist gewählt ist.")) {
-                    TextEditor(text: binding(\.allowlist))
-                        .frame(minHeight: 110)
-                        .accessibilityLabel("Allowlist")
-                }.disabled(!model.isReady)
             }
-            .navigationTitle("Binnen-I be gone")
-            .frame(minWidth: 350, idealWidth: 580)
-        }
-#if os(iOS)
-        .navigationViewStyle(.stack)
+            Section("Statistik") {
+                HStack {
+                    Text("Gefilterte Ausdrücke")
+                    Spacer()
+                    Text(statisticsModel.statistics.total.formatted()).font(.headline)
+                }
+                HStack { Text("Binnen-I-Formen"); Spacer(); Text(statisticsModel.statistics.genderForms.formatted()) }
+                HStack { Text("Doppelformen"); Spacer(); Text(statisticsModel.statistics.doubleForms.formatted()) }
+                HStack { Text("Partizipformen"); Spacer(); Text(statisticsModel.statistics.participles.formatted()) }
+                Text("Seit \(statisticsModel.statistics.resetDate.formatted(date: .abbreviated, time: .shortened))")
+                    .foregroundColor(.secondary)
+                Button("Statistik zurücksetzen", role: .destructive) { confirmsStatisticsReset = true }
+                    .disabled(!statisticsModel.isAvailable)
+            }
+            Section("Filterung") {
+                Toggle("Filterung aktiv", isOn: activeBinding)
+                    .disabled(!model.canEditActive)
+                Toggle("Doppelformen ersetzen", isOn: binding(\.replacesDoubleForms))
+                Toggle(isOn: binding(\.replacesParticiples)) {
+                    HStack { Text("Partizipformen ersetzen"); Text("Beta").font(.caption).foregroundColor(.secondary) }
+                }
+            }.disabled(!model.isReady)
+            Section("Anzeige") {
+                Toggle("Zähler im Toolbar-Icon", isOn: binding(\.showsCounter))
+                Toggle("Alternatives dunkles Toolbar-Icon", isOn: binding(\.usesDarkIcon))
+            }.disabled(!model.isReady)
+            Section("Filtermodus") {
+#if os(macOS)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Auf welchen Seiten filtern?")
+                    Picker("Auf welchen Seiten filtern?", selection: filterModeBinding) {
+                        filterModeOptions
+                    }
+                    .labelsHidden()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+#else
+                Picker("Auf welchen Seiten filtern?", selection: filterModeBinding) {
+                    filterModeOptions
+                }
 #endif
+                Toggle("Seiten zum Thema „Binnen-I“ aussetzen", isOn: binding(\.skipsTopicPages))
+                    .disabled(model.settings.filterMode == "Bei Bedarf")
+            }.disabled(!model.isReady)
+            Section(header: Text("Blocklist"), footer: Text("Eine Domain pro Zeile. Auf diesen Seiten wird nicht gefiltert.")) {
+                TextEditor(text: binding(\.blocklist))
+                    .frame(minHeight: 110)
+                    .accessibilityLabel("Blocklist")
+            }.disabled(!model.isReady)
+            Section(header: Text("Allowlist"), footer: Text("Eine Domain pro Zeile. Nur auf diesen Seiten wird gefiltert, wenn Allowlist gewählt ist.")) {
+                TextEditor(text: binding(\.allowlist))
+                    .frame(minHeight: 110)
+                    .accessibilityLabel("Allowlist")
+            }.disabled(!model.isReady)
+        }
         .onAppear { refresh() }
         .onChange(of: scenePhase) { phase in if phase == .active { refresh() } }
         .confirmationDialog("Statistik zurücksetzen?", isPresented: $confirmsStatisticsReset, titleVisibility: .visible) {
             Button("Statistik zurücksetzen", role: .destructive) { statisticsModel.reset() }
         } message: {
             Text("Alle aggregierten Zähler werden auf null gesetzt.")
+        }
+    }
+
+    private var filterModeOptions: some View {
+        Group {
+            Text("Überall").tag("Keine")
+            Text("Außer Blocklist").tag("Blocklist")
+            Text("Nur Allowlist").tag("Allowlist")
+            Text("Nur bei Bedarf").tag("Bei Bedarf")
         }
     }
 

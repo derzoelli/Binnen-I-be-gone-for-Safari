@@ -9,6 +9,13 @@ typealias PlatformViewController = NSViewController
 #endif
 
 class ViewController: PlatformViewController {
+#if os(macOS)
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        view.window?.contentMinSize = NSSize(width: 580, height: 540)
+    }
+#endif
+
     override func viewDidLoad() {
         super.viewDidLoad()
 #if os(iOS)
