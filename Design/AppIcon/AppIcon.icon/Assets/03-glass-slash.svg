@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="glass" gradientUnits="userSpaceOnUse" x1="451" y1="413" x2="585" y2="647">
+      <stop stop-color="#ECFAFF" stop-opacity=".88"/>
+      <stop offset=".12" stop-color="#B9DDF8" stop-opacity=".64"/>
+      <stop offset=".29" stop-color="#5D94C2" stop-opacity=".20"/>
+      <stop offset=".43" stop-color="#D4EBFB" stop-opacity=".32"/>
+      <stop offset=".52" stop-color="#FFFFFF" stop-opacity=".88"/>
+      <stop offset=".61" stop-color="#E3F3FF" stop-opacity=".62"/>
+      <stop offset=".79" stop-color="#639BD0" stop-opacity=".31"/>
+      <stop offset=".93" stop-color="#B6DAF8" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#F3FCFF" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="reflection" gradientUnits="userSpaceOnUse" x1="205" y1="774" x2="839" y2="215">
+      <stop stop-color="#C5E5FF" stop-opacity=".10"/>
+      <stop offset=".27" stop-color="#D8F1FF" stop-opacity=".38"/>
+      <stop offset=".45" stop-color="#FFFFFF" stop-opacity=".80"/>
+      <stop offset=".54" stop-color="#FFE0C5" stop-opacity=".60"/>
+      <stop offset=".66" stop-color="#F9FEFF" stop-opacity=".64"/>
+      <stop offset=".80" stop-color="#9AC9F4" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#F7FDFF" stop-opacity=".70"/>
+    </linearGradient>
+    <radialGradient id="warm" gradientUnits="userSpaceOnUse" cx="532" cy="548" r="175">
+      <stop stop-color="#FFCEB0" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#FFCEB0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path d="M150 826C166 681 229 600 384 493L654 321C749 260 815 205 876 159C856 323 802 415 662 509L405 680C291 757 210 797 150 826Z" fill="url(#glass)" stroke="#83B5DC" stroke-opacity=".48" stroke-width="3"/>
+  <path d="M150 826C166 681 229 600 384 493L654 321C749 260 815 205 876 159C856 323 802 415 662 509L405 680C291 757 210 797 150 826Z" fill="url(#warm)"/>
+  <path d="M160 813C249 695 364 623 492 540L719 394C797 343 843 254 872 171C851 304 808 367 718 427L465 596C345 677 235 762 160 813Z"
+        fill="url(#reflection)"/>
+  <path d="M156 813C174 684 235 608 389 500L659 327C752 266 816 211 870 169"
+        fill="none" stroke="#F6FDFF" stroke-opacity=".92" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M160 815C228 786 302 745 411 673L665 504C788 421 840 324 871 183"
+        fill="none" stroke="#E4F6FF" stroke-opacity=".72" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

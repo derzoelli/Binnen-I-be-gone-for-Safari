@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="blueprint" x1="0" y1="0" x2=".68" y2="1">
+      <stop stop-color="#0099FF"/>
+      <stop offset=".28" stop-color="#0075FF"/>
+      <stop offset=".65" stop-color="#004ECE"/>
+      <stop offset="1" stop-color="#063589"/>
+    </linearGradient>
+    <radialGradient id="blue-light" cx=".20" cy=".09" r=".95">
+      <stop stop-color="#29B8FF" stop-opacity=".36"/>
+      <stop offset="1" stop-color="#29B8FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#blueprint)"/>
+  <rect width="1024" height="1024" fill="url(#blue-light)"/>
+</svg>

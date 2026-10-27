@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <pattern id="minor" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#A7DAFF" stroke-opacity=".13" stroke-width="1"/>
+    </pattern>
+    <pattern id="major" width="200" height="200" x="12" y="12" patternUnits="userSpaceOnUse">
+      <path d="M200 0H0V200" fill="none" stroke="#D1EDFF" stroke-opacity=".17" stroke-width="1.25"/>
+    </pattern>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#minor)"/>
+  <rect width="1024" height="1024" fill="url(#major)"/>
+  <g fill="none" stroke="#D2EEFF" stroke-width="1.5" stroke-opacity=".34">
+    <rect x="72" y="72" width="880" height="880" rx="190"/>
+    <rect x="108" y="108" width="808" height="808" rx="156" stroke-opacity=".22"/>
+    <circle cx="512" cy="512" r="402"/>
+    <circle cx="512" cy="512" r="282" stroke-opacity=".15"/>
+    <path d="M512 72V952M72 512H952M178 178L846 846M178 846L846 178" stroke-opacity=".22"/>
+    <path d="M304 160V864M720 160V864M160 180H864M160 846H864" stroke-opacity=".18"/>
+  </g>
+  <g fill="none" stroke="#ECF8FF" stroke-width="2" stroke-opacity=".68">
+    <circle cx="212" cy="212" r="17"/><path d="M186 212H238M212 186V238"/>
+    <circle cx="812" cy="212" r="17"/><path d="M786 212H838M812 186V238"/>
+    <circle cx="212" cy="812" r="17"/><path d="M186 812H238M212 786V838"/>
+    <circle cx="812" cy="812" r="17"/><path d="M786 812H838M812 786V838"/>
+  </g>
+</svg>

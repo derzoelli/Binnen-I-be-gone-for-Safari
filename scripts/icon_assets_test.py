@@ -41,10 +41,29 @@ def check_composer_icon(name, expected_layers):
     layers = [layer for group in document["groups"] for layer in group["layers"]]
     found = {layer["image-name"] for layer in layers}
     assert found == set(expected_layers), f"Unexpected {name} layers: {found}"
+    assert len(layers) == len(expected_layers), f"Duplicate {name} layers"
+    glass_group = next(group for group in document["groups"]
+                       if any(layer["image-name"] == "03-glass-slash.svg" for layer in group["layers"]))
+    assert len(glass_group["layers"]) == 1, f"{name} ribbon needs its own material group"
+    assert glass_group["refractivity"]["enabled"] and glass_group["refractivity"]["depth"] > 0, (
+        f"{name} ribbon must retain native refraction"
+    )
+    assert "refractivity" in document["features"], f"{name} missing native glass feature"
+    assert {asset.name for asset in (icon / "Assets").iterdir()
+            if asset.is_file() and not asset.name.startswith(".")} == found, f"Unused {name} assets"
     for filename in expected_layers:
         assert (icon / "Assets" / filename).read_bytes() == (APP_ICONS / filename).read_bytes(), (
             f"{name} has an outdated {filename} layer"
         )
+    # Both appearances must stay explicit; otherwise Composer's automatic color
+    # treatment can turn the dark release I dark or lose the navy beta background.
+    assert any(value.get("appearance") == "dark" for value in document["fill-specializations"]), name
+    background = next(layer for layer in layers if layer["name"].startswith("01-"))
+    assert any(value.get("appearance") == "dark" for value in background["fill-specializations"]), name
+    if name == "AppIcon":
+        letter = next(layer for layer in layers if layer["name"] == "02-letter")
+        assert any(value.get("appearance") == "dark" and value["value"] == "system-light"
+                   for value in letter["fill-specializations"]), "Dark release I must stay light"
 
 
 def check_project():
@@ -101,8 +120,8 @@ def main():
     for size in (128, 256, 384):
         check_png(large_icon / f"icon{size}.png", size, APP_ICONS / "extension.svg")
 
-    check_composer_icon("AppIcon", ("01-background.svg", "02-letter.svg", "03-slash.svg"))
-    check_composer_icon("AppIconBeta", ("01-background.svg", "02-letter.svg", "03-slash-beta.svg", "04-beta-marker.svg"))
+    check_composer_icon("AppIcon", ("01-background.svg", "02-letter.svg", "03-glass-slash.svg"))
+    check_composer_icon("AppIconBeta", ("01-beta-background.svg", "02-beta-grid.svg", "03-beta-letter.svg", "03-glass-slash.svg"))
     assert not (ASSETS / "AppIcon.appiconset").exists()
     assert not (ROOT / "Shared (Extension)/Resources/META-INF").exists()
     assert not list(IMAGES.glob("iconOn*.png")) and not list(IMAGES.glob("iconOff*.png"))
